@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo $(realpath $1)
+if [ -z "$1" ] 
+then
+	echo "No filepath specified"
+	exit 1
+fi
+
+if [ -z "$2" ] 
+then
+	echo "No command specified"
+	exit 1
+fi
+
+while true; do
+  inotifywait -qm --event modify --format '%w' $(realpath $1) | ls -lah
+done

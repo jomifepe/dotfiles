@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# [Desktop Entry]
+# Type=Application
+# Version=1.0
+# Encoding=UTF-8
+# Name=Sample Application Name
+# StartupWMClass=Google Chrome
+# GenericName=Text Editor
+# Comment=A sample application
+# Exec=application
+# Icon=application.png
+# Terminal=false
+# Keywords=Text;editor;
+# Categories=Network;Messaging;
+# MimeType=text/html;text/xml;
+
+output="[Desktop Entry]\nEncoding=UTF-8\nType=Application\nVersion=1.0\n"
+
+printf "1) System-wide\n2) User-specific\nType: "; read _type
+case "$_type" in
+	1) __filename="/usr/share/applications/" ;;
+	2) __filename="/home/jmfp/.local/share/applications/" ;;
+	*) printf "Invalid choice \n"; exit 0 ;;
+esac
+
+printf "Filename: " ;read _filename
+if [ -z "$_filename" ]; then printf "Filename is required \n"; exit 0; 
+else __filename+="$(echo "$_filename" | tr '[:upper:]' '[:lower:]').desktop"; fi
+
+printf "Name: "; read _name
+if [ -z "$_name" ]; then printf "Name is required \n"; exit 0; else output+="Name=$_name\n"; fi
+
+printf "GenericName: "; read _genericname
+if [ ! -z "$_genericname" ]; then output+="GenericName=$_genericname\n"; fi
+
+printf "Comment: "; read _comment
+if [ ! -z "$_comment" ]; then output+="Comment=$_comment\n"; fi
+
+printf "Exec: "; read _exec
+if [ -z "$_exec" ]; then printf "Exec is required \n"; exit 0; else output+="Exec=$_exec\n"; fi
+
+printf "Icon: "; read _icon
+if [ ! -z "$_icon" ]; then output+="Icon=$_icon\n"; fi
+
+printf "Terminal (default false): "; read _terminal
+if [ -z "$_terminal" ]; 
+then output+="Terminal=false\n"; 
+elif [ $_terminal != "true" ] && [ $_terminal != "false" ]; 
+then printf "Terminal needs to be true or false \n"; exit 0; 
+else output+="Terminal=$_terminal\n"; fi
+
+printf "Keywords (e.g. Text;editor;): "; read _keywords
+if [ ! -z "$_keywords" ]; then output+="Keywords=$_keywords\n"; fi
+
+printf "Categories (e.g. Network;Messaging;): "; read _categories
+if [ ! -z "$_categories" ]; then output+="Categories=$_categories\n"; fi
+
+printf "MimeType (e.g. text/html;text/xml;): "; read _mimetype
+if [ ! -z "$_mimetype" ]; then output+="MimeType=$_mimetype\n"; fi
+
+printf "$output" > "$__filename"

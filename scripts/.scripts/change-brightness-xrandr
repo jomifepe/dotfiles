@@ -1,0 +1,14 @@
+#!/bin/sh
+
+CURR_XRANDR_BRIGHT=$(xrandr --verbose | awk '/Brightness/ { print $2 }')
+
+if [[ $1 == "d" ]] && [ ! -z  "$2" ]; then
+    NEW_XRANDR_BRIGHT=`echo "($CURR_XRANDR_BRIGHT * 100) - $2" | bc`
+    set-brightness-xrandr $(echo -e "${NEW_XRANDR_BRIGHT%.*}")
+elif [[ $1 == "i" ]] && [ ! -z  "$2" ]; then
+    NEW_XRANDR_BRIGHT=`echo "($CURR_XRANDR_BRIGHT * 100) + $2" | bc`
+    set-brightness-xrandr $(echo -e "${NEW_XRANDR_BRIGHT%.*}")
+else 
+    echo "Invalid option"
+fi
+

@@ -1,0 +1,29 @@
+aspell aspell-en
+base-devel
+compton
+cowsay
+rofi
+dunst
+feh
+zsh
+rxvt-unicode-patched
+fzf
+git
+gnome-keyring
+gnupg
+htop
+xclip xautolock numlockx
+networkmanager network-manager-applet
+nodejs npm
+openssh
+pacman-contrib
+playerctl
+pulseaudio pa-applet-git pavucontrol
+ripgrep
+stow
+polybar
+gotop
+neofetch
+synergy
+p7zip unrar
+xorg-server xorg-xbacklight xorg-xmodmap xorg-xrandr

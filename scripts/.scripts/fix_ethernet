@@ -1,0 +1,33 @@
+#!/bin/sh
+
+C_DEFAULT="\e[39m"
+C_LRED="\e[91m"
+C_LGREEN="\e[92m"
+C_LCYAN="\e[96m"
+
+KMODULE=r8168
+
+printf "\n$(lspci -knn | grep -C 3 $KMODULE)"
+printf "\n\n${C_LGREEN}Is '$KMODULE' the driver module for your Ethernet Controller? (y/n)${C_DEFAULT}: "
+read MCONFIRM
+
+if [ "${MCONFIRM^^}" == "Y" ]; then
+	sudo modprobe -r $KMODULE
+	sudo modprobe $KMODULE
+elif [ "${MCONFIRM^^}" == "N" ]; then
+	printf "${C_LCYAN}Do you want to check the list of PCI buses for the correct driver? (y/n)${C_DEFAULT}: "
+	read LCONFIRM
+
+	if [ "${LCONFIRM^^}" == "Y" ]; then
+		lspci -knn
+		printf "\n${C_LCYAN}Enter your driver module:${C_DEFAULT} "
+		read NEW_KMODULE
+
+		if [ ! -z "$NEW_KMODULE" ]; then
+			sudo modprobe -r $NEW_KMODULE
+			sudo modprobe $NEW_KMODULE
+		else
+			printf "${C_LRED}Invalid module${C_DEFAULT}\n"
+		fi
+	fi	
+fi

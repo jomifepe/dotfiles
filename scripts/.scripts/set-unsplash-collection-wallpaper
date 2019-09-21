@@ -1,0 +1,57 @@
+#!/bin/bash
+
+SAVE_PATH="$HOME/Pictures"
+FILENAME="unsplash_wallpaper.jpg"
+RESOLUTION="1920x1080"
+LAUNCHER="rofi -width 30 -dmenu -i -p option"
+
+COLLECTION_IDS=(
+	"399194"
+	"827743"
+	"1538150"
+	"364"
+	"789653"
+	"420324"
+	"217609"
+	"256443"
+	"463870"
+	"1463948"
+	"219941"
+	"207696"
+	"2411320"
+	"220388"
+)
+COLLECTION_NAMES=(
+	"Drone Pictures"
+	"Landscape"
+	"Milkyway"
+	"Water"
+	"Urban Geometry"
+	"Blurrrr"
+	"Monotone"
+	"The Night Sky"
+	"Split Screens"
+	"Fog and Mist"
+	"Architecture Buildings Spaces"
+	"The Flat Earth Society"
+	"Trend Extreme Neon"
+	"macOS Desktop Wallpapers"
+)
+
+if [ -z  "$1" ]; then
+	OPTIONS=""
+	for i in ${!COLLECTION_NAMES[@]}; do
+		OPTIONS+="$i - ${COLLECTION_NAMES[$i]}\n"
+	done
+	collection_idx=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}'`
+	if [ ${#collection_idx} -gt 0 ]; then
+		COLLECTION_ID=${COLLECTION_IDS[$collection_idx]}
+		API_URL="https://source.unsplash.com/collection/$COLLECTION_ID/$RESOLUTION"
+		wget -O $SAVE_PATH/$FILENAME $API_URL
+		feh --bg-scale $SAVE_PATH/$FILENAME
+	fi
+else
+	API_URL="https://source.unsplash.com/collection/$1/$RESOLUTION"
+	wget -O $SAVE_PATH/$FILENAME $API_URL
+	feh --bg-scale $SAVE_PATH/$FILENAME
+fi

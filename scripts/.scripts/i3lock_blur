@@ -1,0 +1,11 @@
+#!/bin/bash
+ICON=$HOME/.scripts/assets/i3lock_icon.png
+TMPBG=/tmp/screenshot.png
+
+import -window root $TMPBG
+# scrot $TMPBG
+convert $TMPBG -blur 0x5 $TMPBG
+convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
+i3lock -f -i $TMPBG
+sleep 1
+exit 0

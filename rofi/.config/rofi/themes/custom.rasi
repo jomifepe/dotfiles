@@ -1,0 +1,106 @@
+* {
+    accent: #E8555E;
+    background: #131C21;
+    backgroundLighter: #1F2D36;
+    text: #A1A1A1;
+
+    separatorcolor: @background;
+    scrollbarcolor: @background;
+    font-size: 1px;
+    border-color: @accent;
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    spacing: 0;
+    text-color: @background;
+    background-color: transparent;
+}
+
+#listview {
+    spacing: 0;
+    scrollbar: true;
+    margin: 0;
+    dynamic: true;
+}
+
+#window {
+    background-color: @background;
+    border-color: @separatorcolor;
+    border: 0;
+    border-radius: 0px;
+}
+
+#mainbox {
+    border: 0;
+    padding: 0;
+    background-color: @background;
+}
+
+#element {
+    padding: 6 16 6 16;
+    border: 0 0 0 0;
+    border-color: @separatorcolor;
+    background-color: @background;
+    text-color: @text;
+}
+
+#element.selected.normal {
+    background-color: @accent;
+    text-color: @background;
+    border-radius: 0px;
+    border: 0 0 0 0;
+    border-color: @separatorcolor;
+}
+
+#element.alternate.normal {
+    background-color: @background;
+}
+
+#element.normal.active {
+    background-color: @backgroundLighter;
+}
+
+#element.alternate.active {
+    background-color: @backgroundLighter;
+}
+
+#element.selected.active {
+    background-color: @accent;
+    text-color: @background;
+    border-radius: 0px;
+
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+}
+
+#inputbar {
+    border: 0 solid 0 solid 1 solid 0 solid;
+    margin: 0;
+    spacing: 0;
+    border-color: @separatorcolor;
+    background-color: @accent;
+}
+
+#prompt {
+    padding: 16;
+    background-color: @background;
+    border: 0 1 0 0;
+    text-color: @text;
+}
+
+#entry {
+    padding: 16;
+}
+
+#scrollbar {
+    border: 0;
+    width: 8px;
+    handle-width: 8px;
+    handle-color: @scrollbarcolor;
+    background-color: @background;
+}
+
+#scrollbar handle {
+    border: 1px;
+    border-color: #ff0000;
+}
