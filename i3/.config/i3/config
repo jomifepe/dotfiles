@@ -424,7 +424,7 @@ hide_edge_borders both
 exec --no-startup-id compton -b
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
-exec --no-startup-id xautolock -time 20 -locker blurlock
+exec --no-startup-id xautolock -time 20 -locker i3lock_blur
 exec_always --no-startup-id fix_xcursor
 exec_always feh --bg-scale /home/jmfp/Pictures/wallpaper.png
 exec --no-startup-id numlockx on
@@ -437,7 +437,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id teamviewer 
-# exec --no-startup-id clipit
+exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 
 ################################################################################

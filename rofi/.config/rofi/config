@@ -3,6 +3,9 @@ rofi.modi:                           drun,run
 rofi.width:                          40
 rofi.font:                           mono 10
 rofi.hide-scrollbar:                 true
+rofi.show-icons:                     false
+rofi.lines:                          15
+rofi.columns: 1
 
 ! "Number of lines" Set from: Default
 ! rofi.lines:                          15

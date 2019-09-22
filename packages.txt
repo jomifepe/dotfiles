@@ -1,7 +1,7 @@
 aspell aspell-en
 base-devel
 compton
-cowsay
+cowsay lolcat
 rofi
 dunst
 feh
@@ -12,7 +12,7 @@ git
 gnome-keyring
 gnupg
 htop
-xclip xautolock numlockx
+clipit xclip xautolock numlockx
 networkmanager network-manager-applet
 nodejs npm
 openssh
