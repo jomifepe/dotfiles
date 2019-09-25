@@ -5469,7 +5469,7 @@ calendar.raven-calendar {
     .budgie-switcher-window flowboxchild:selected:active {
       color: #f8f8f2; }
     .budgie-switcher-window flowboxchild:selected:hover {
-      background-color: #e66db2; }
+      background-color: #ea646c; }
     .budgie-switcher-window flowboxchild:selected:disabled {
       color: rgba(248, 248, 242, 0.7);
       background-color: rgba(232, 85, 94, 0.7); }

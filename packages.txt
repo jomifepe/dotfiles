@@ -1,7 +1,7 @@
 aspell aspell-en
 base-devel
 compton
-cowsay lolcat
+cowsay lolcat sl
 rofi
 dunst
 feh

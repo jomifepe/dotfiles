@@ -1313,11 +1313,11 @@
     <linearGradient
        id="outerBackgroundGradient-6">
       <stop
-         style="stop-color:#b69cd1;stop-opacity:1;"
+         style="stop-color:#ee8289;stop-opacity:1;"
          offset="0"
          id="stop3864-8-6-6" />
       <stop
-         style="stop-color:#a172d2;stop-opacity:1;"
+         style="stop-color:#E8555E;stop-opacity:1;"
          offset="1"
          id="stop3866-9-1-0" />
     </linearGradient>
@@ -1622,7 +1622,7 @@
          height="14"
          width="14"
          id="rect4501"
-         style="color:#bebebe;fill:#a172d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+         style="color:#bebebe;fill:#e8555e;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
     </clipPath>
     <linearGradient
        inkscape:collect="always"

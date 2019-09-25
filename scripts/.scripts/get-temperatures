@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo -e "$(sensors)\n\n$(nvidia-smi --format=csv,noheader --query-gpu="gpu_name,temperature.gpu" | tr , :)°C"
