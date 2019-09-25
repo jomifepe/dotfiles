@@ -67,7 +67,6 @@ URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
 URxvt*saveLines:                  5000
 
-! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
 ! URxvt*transparent:              true
 ! URxvt*shading:                  138
@@ -95,7 +94,11 @@ URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.C-equal:     resize-font:reset
 URxvt.keysym.C-question:  resize-font:show
 
+<<<<<<< Updated upstream
 URxvt.perl-ext-common:            ...,clipboard,resize-font,url-select,keysym-list
+=======
+URxvt.perl-ext-common:            clipboard,resize-font,url-select,keysym-list
+>>>>>>> Stashed changes
 
 ! URxvt*termName:                   string
 ! URxvt*geometry:                   geometry
