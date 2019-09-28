@@ -33,7 +33,7 @@ then
         $($USE_LOCKER) && "$LOCKER"; systemctl suspend
         ;;
       Hibernate)
-        $($USE_LOCKER) && "$LOCKER"; systemctl hibernate
+        # $($USE_LOCKER) && "$LOCKER"; systemctl hibernate
         ;;
       Lock)
         "$LOCKER"

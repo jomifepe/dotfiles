@@ -425,7 +425,7 @@ exec --no-startup-id compton -b
 # exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 20 -locker i3lock_blur
 exec_always --no-startup-id fix_xcursor
-exec_always feh --bg-scale /home/jmfp/Pictures/wallpaper.png
+exec_always --no-startup-id feh --bg-scale /home/jmfp/Pictures/wallpaper.png
 exec --no-startup-id numlockx on
 exec polybar i3 -r
 exec dropbox start
