@@ -1,0 +1,25 @@
+[colors]
+
+background-lighten-9 = #414A4F
+background-lighten-8 = #3C454A
+background-lighten-7 = #374045
+background-lighten-6 = #323B40
+background-lighten-5 = #2D363B
+background-lighten-4 = #273035
+background-lighten-3 = #222B30
+background-lighten-2 = #1D262B
+background-lighten-1 = #182126
+background = #131C21
+background-darken-1 = #0E171C
+background-darken-2 = #091217
+background-darken-3 = #040D12
+background-darken-4 = #00080D
+background-darken-5 = #000308
+background-darken-6 = #000002
+background-alt = #1f2d38
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #a1a1a1
+primary = #E8555E
+secondary = #e43742
+alert = #bd2c40
