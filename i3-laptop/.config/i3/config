@@ -268,30 +268,35 @@ mode "$mode_system" {
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
+set $rnstep 1
+set $rbstep 5
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        # Small steps
+        bindsym j resize shrink width $rnstep px or $rnstep ppt
+        bindsym k resize grow height $rnstep px or $rnstep ppt
+        bindsym l resize shrink height $rnstep px or $rnstep ppt
+        bindsym semicolon resize grow width $rnstep px or $rnstep ppt
+        bindsym Left resize shrink width $rnstep px or $rnstep ppt
+        bindsym Down resize grow height $rnstep px or $rnstep ppt
+        bindsym Up resize shrink height $rnstep px or $rnstep ppt
+        bindsym Right resize grow width $rnstep px or $rnstep ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        # Big steps
+        bindsym Shift+j resize shrink width $rbstep px or $rbstep ppt
+        bindsym Shift+k resize grow height $rbstep px or $rbstep ppt
+        bindsym Shift+l resize shrink height $rbstep px or $rbstep ppt
+        bindsym Shift+semicolon resize grow width $rbstep px or $rbstep ppt
+        bindsym Shift+Left resize shrink width $rbstep px or $rbstep ppt
+        bindsym Shift+Down resize grow height $rbstep px or $rbstep ppt
+        bindsym Shift+Up resize shrink height $rbstep px or $rbstep ppt
+        bindsym Shift+Right resize grow width $rbstep px or $rbstep ppt
 
-        # exit resize mode: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
 # Lock screen
-bindsym $mod+x exec --no-startup-id i3lock-blur
+bindsym $mod+x exec --no-startup-id $LOCKER
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -419,7 +424,7 @@ hide_edge_borders both
 exec --no-startup-id compton -b
 # exec_always --no-startup-id sbxkb
 # exec --no-startup-id start_conky_maia
-exec --no-startup-id xautolock -time 20 -locker i3lock-blur
+exec --no-startup-id xautolock -time 20 -locker $LOCKER
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id feh --bg-scale /home/jmfp/Pictures/wallpaper.png
 exec --no-startup-id numlockx on

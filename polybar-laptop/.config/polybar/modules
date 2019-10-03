@@ -7,7 +7,7 @@ label-padding = 1
 label-foreground = ${colors.foreground}
 
 format = "<label>"
-format-prefix = "盛 "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 exec = $HOME/.config/polybar/scripts/get_xrandr_brightness
 format-background = ${colors.background-lighten-2}

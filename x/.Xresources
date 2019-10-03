@@ -94,11 +94,7 @@ URxvt.keysym.C-plus:      resize-font:bigger
 URxvt.keysym.C-equal:     resize-font:reset
 URxvt.keysym.C-question:  resize-font:show
 
-<<<<<<< Updated upstream
-URxvt.perl-ext-common:            ...,clipboard,resize-font,url-select,keysym-list
-=======
 URxvt.perl-ext-common:            clipboard,resize-font,url-select,keysym-list
->>>>>>> Stashed changes
 
 ! URxvt*termName:                   string
 ! URxvt*geometry:                   geometry

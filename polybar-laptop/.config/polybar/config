@@ -40,7 +40,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 dim-value = 1.0
 
-line-size = 2
+line-size = 0
 line-color = ${colors.primary}
 
 border-size = 0
@@ -48,7 +48,7 @@ border-color = ${colors.primary}
 
 font-0 = "UbuntuMono Nerd Font:size=10;2"
 font-1 = unifont:fontformat=truetype:size=8:antialias=false
-font-2 = siji:pixelsize=10
+font-2 = "Wuncon Siji:size=12;2"
 font-3 = Iosevka Nerd Font:style=Medium:size=18
 font-4 = Noto Sans Symbols:size=10:antialias=true
 

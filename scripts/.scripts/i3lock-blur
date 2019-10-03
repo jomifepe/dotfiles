@@ -1,11 +1,19 @@
 #!/bin/bash
-ICON=$HOME/.scripts/assets/i3lock_icon.png
-TMPBG=/tmp/screenshot.png
 
-import -window root $TMPBG
-# scrot $TMPBG
-convert $TMPBG -blur 0x5 $TMPBG
-convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
+ICON=$HOME/.scripts/assets/lock.png
+TMPBG=/tmp/screenshot.png
+RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
+
+# // Scrot is faster for taking the screenshot
+# import -window root $TMPBG
+scrot $TMPBG
+
+# // FFMPEG is faster on bluring but loses quality
+# convert $TMPBG -blur 0x12 $TMPBG
+# convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
+ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxblur=10,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
+
 i3lock -f -i $TMPBG
+rm $TMPBG
 sleep 1
 exit 0
