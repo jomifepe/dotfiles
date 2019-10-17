@@ -442,6 +442,7 @@ exec --no-startup-id pamac-tray
 # exec --no-startup-id teamviewer 
 exec --no-startup-id clipit
 exec --no-startup-id mailspring --background
+exec --no-startup-id megasync
 # exec --no-startup-id blueman-applet
 
 ################################################################################

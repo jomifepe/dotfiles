@@ -69,7 +69,7 @@ tray-offset-x = 0
 tray-offset-y = 0
 tray-maxsize = 16
 tray-transparent = false
-tray-background = ${colors.background-lighten-2}
+tray-background = ${colors.tray}
 
 ; Restack the bar window and put it above the
 ; selected window manager's root
