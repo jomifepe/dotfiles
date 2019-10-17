@@ -9,9 +9,10 @@ RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x
 scrot $TMPBG
 
 # // FFMPEG is faster on bluring but loses quality
-# convert $TMPBG -blur 0x12 $TMPBG
+# convert -scale 10% -blur 0x4 -resize 1000% $TMPBG $TMPBG
 # convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
-ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxblur=10,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
+
+ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxblur=15,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
 
 i3lock -f -i $TMPBG
 rm $TMPBG

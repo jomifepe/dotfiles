@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dbus-monitor "type='signal',path='/org/mpris/MediaPlayer2',member='PropertiesChanged'" | grep --line-buffered 'string "Metadata"' |
+while read -r line ; do
+	sink_num=$(pactl list | grep -E '(^Sink Input)|(media.name = \"Spotify\"$)' | awk '/Spotify/ {print a} {a = $0}' | cut -c 13-)
+	dbus_metadata=`dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | awk '/string "mpris:artUrl"/{getline; print}'`
+
+	[ -z "$sink_num" ] && continue
+	if [[ "$dbus_metadata" == *'string ""'* ]]; then
+		pactl set-sink-input-mute $sink_num yes
+	else
+		pactl set-sink-input-mute $sink_num no
+	fi
+done &
+spotify "$@" &
+wait $! &&
+test -z "`jobs -p`" || kill `jobs -p` # http://stackoverflow.com/a/2618497

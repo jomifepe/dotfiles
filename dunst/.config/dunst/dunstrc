@@ -1,6 +1,6 @@
 [global]
     frame_width = 1
-    frame_color = "#1f2d38"
+    frame_color = "#E8555E"
     
     font = Noto Sans 10
     
@@ -50,7 +50,7 @@
     
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = no
+    word_wrap = yes
     
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -68,7 +68,7 @@
     # the top and down respectevly.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x4-10+32"
+    geometry = "500x10-11+37"
     
     # Shrink window if it's smaller than the width.  Will be ignored if
     # width is 0.
@@ -228,78 +228,18 @@
 #    summary = "foobar"
 #    format = ""
 
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
-#[Claws Mail]
-#    appname = claws-mail
-#    category = email.arrived
-#    urgency = normal
-#    background = "#2F899E"
-#    foreground = "#FFA247"
-#
 #[mute.sh]
 #     appname = mute
 #     category = mute.sound
 #     script = mute.sh
-#
-#[JDownloader]
-#    appname = JDownloader
-#    category = JD
-#    background = "#FFA247"
-#    foreground = "#FFFFFF"
-#
-#[newsbeuter]
-#    summary = *Feeds*
-#    background = "#A8EB41"
-#    foreground = "#FFFFFF"
-#
-[irc]
-        appname = weechat
-        timeout = 0
-        background = "#0033bb"
-        foreground = "#dddddd"
-#
-[weechat hl]
-     appname = weechat
-     category = weechat.HL
-     background = "#FF5C47"
-     foreground = "#FFFFFF"
-#
-[weechat pn]
-     appname = weechat
-     category = weechat.PM
-     background = "#D53B84"
-     foreground = "#FFFFFF"
-#
-#[CMUS]
-#    appname = CMUS
-#    category = cmus
-#    background = "#6C4AB7"
-#    foreground = "#FFE756"
-#
-#
-#     background = "#30AB70"
-#     foreground = "#F67245"
-#
-# vim: ft=cfg
+
+[spotify]
+    appname = Spotify
+    frame_color = "#1DB954"
+
+[whatsapp]
+    appname = "whats-app-nativefier-*"
+    frame_color = "#25D366"
 
 [play_sound]
     summary = "*"

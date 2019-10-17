@@ -1,53 +1,64 @@
 #!/bin/bash
 
-OPTIONS="Power-off system\nReboot system\nSuspend system\nHibernate system\nLock session\nLogout session\nSwitch user\nReload UI"
+poweroff="襤"
+reboot="累"
+sleep="鈴"
+hibernate="⏾"
+lock=""
+logout=""
+switch=""
+reload=""
+
+OPTIONS_ICONS="$poweroff\n$reboot\n$sleep\n$hibernate\n$lock\n$logout\n$switch\n$reload"
+LAUNCHER_ICONS_THEME="~/.config/rofi/themes/powermenu.rasi"
+
+OPTIONS_TEXT="Power-off system\nReboot system\nSuspend system\nHibernate system\nLock session\nLogout session\nSwitch user\nReload UI"
 
 # source configuration or use default values
 if [ -f $HOME/.config/rofi-power/config ]; then
   source $HOME/.config/rofi-power/config
 else
-  LAUNCHER="rofi -width 30 -dmenu -i -p option"
-  USE_LOCKER="false"
+  LAUNCHER_ICONS="rofi -theme $LAUNCHER_ICONS_THEME -dmenu -p power-menu"
+  LAUNCHER_TEXT="rofi -width 30 -dmenu -i -p option"
+  USE_LOCKER="true"
 fi
 
 # Show exit wm option if exit command is provided as an argument
 if [ ${#1} -gt 0 ]; then
-  OPTIONS="Exit window manager\n$OPTIONS"
+  OPTIONS="Exit window manager\n$OPTIONS_TEXT"
 fi
 
-option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
-if [ ${#option} -gt 0 ]
-then
+option=`echo -e $OPTIONS_ICONS | $LAUNCHER_ICONS | awk '{print $1}' | tr -d '\r\n'`
+if [ ${#option} -gt 0 ]; then
     case $option in
       Exit)
         eval $1
         ;;
-      Power-off)
+      $poweroff)
         systemctl poweroff
         ;;
-      Reboot)
+      $reboot)
         systemctl reboot
         ;;
-      Suspend)
+      $sleep)
         $($USE_LOCKER) && "$LOCKER"; systemctl suspend
         ;;
-      Hibernate)
+      $hibernate)
         # $($USE_LOCKER) && "$LOCKER"; systemctl hibernate
         ;;
-      Lock)
+      $lock)
         "$LOCKER"
         ;;
-      Logout)
+      $logout)
         i3-msg exit
         ;;
-      Switch)
+      $switch)
         dm-tool switch-to-greeter
         ;;
-      Reload)
+      $reload)
         RELOAD_UI_OPTIONS="i3\nPolybar\nDunst"
-        reload_option=`echo -e $RELOAD_UI_OPTIONS | $LAUNCHER | awk '{print $1}'`
-        if [ ${#reload_option} -gt 0 ]
-        then
+        reload_option=`echo -e $RELOAD_UI_OPTIONS | $LAUNCHER_TEXT | awk '{print $1}'`
+        if [ ${#reload_option} -gt 0 ]; then
             case $reload_option in
               i3)
                 i3-msg restart
@@ -62,8 +73,6 @@ then
                 ;;
             esac
         fi
-        ;;
-      *)
         ;;
     esac
 fi

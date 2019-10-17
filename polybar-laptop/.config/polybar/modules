@@ -101,7 +101,7 @@ label-urgent-padding = 2
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
+format-prefix = " "
 format = "<label> "
 exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '{play_pause} {artist} - {song}'
 format-background = ${colors.background-alt}
@@ -344,8 +344,6 @@ ramp-volume-1 = " "
 ramp-volume-2 = " "
 ramp-volume-foreground = ${colors.foreground-alt}
 ramp-volume-background = ${colors.background-lighten-6}
-
-click-right = i3-msg '[class="Pavucontrol"] focus'
 
 [module/default_sinks]
 type = custom/script
