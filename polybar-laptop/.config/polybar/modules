@@ -8,7 +8,7 @@ label-foreground = ${colors.foreground}
 
 format = "<label>"
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 exec = $HOME/.config/polybar/scripts/get_xrandr_brightness
 format-background = ${colors.background-lighten-2}
 format-padding = 1
@@ -204,7 +204,7 @@ interval = 2.0
 label-connected = "%{T5}%essid%%{T-}"
 label-connected-padding = 1
 format-connected-prefix = "直 "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${colors.foreground}
 format-connected = <label-connected>
 format-connected-foreground = ${colors.foreground}
 format-connected-background = ${colors.background-darken-1}
@@ -213,7 +213,7 @@ label-disconnected = " %ifname% disconnected"
 label-disconnected-foreground = ${colors.foreground-alt}
 label-disconnected-padding = 1
 format-disconnected-prefix = "睊 "
-format-disconnected-prefix-foreground = ${colors.foreground-alt}
+format-disconnected-prefix-foreground = ${colors.foreground}
 format-disconnected = <label-disconnected>
 format-disconnected-foreground = ${colors.foreground}
 format-disconnected-background = ${colors.background-darken-1}
@@ -223,7 +223,7 @@ ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -334,7 +334,7 @@ label-volume-background = ${colors.background-lighten-6}
 label-volume-padding = 1
 
 format-muted-prefix = "ﱝ "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.foreground}
 format-muted-background = ${colors.background-lighten-6}
 label-muted = Muted
 label-muted-padding = 1
@@ -342,7 +342,7 @@ label-muted-padding = 1
 ramp-volume-0 = " "
 ramp-volume-1 = " "
 ramp-volume-2 = " "
-ramp-volume-foreground = ${colors.foreground-alt}
+ramp-volume-foreground = ${colors.foreground}
 ramp-volume-background = ${colors.background-lighten-6}
 
 [module/default_sinks]
@@ -350,7 +350,7 @@ type = custom/script
 interval = .2
 format = <label>
 exec = python $HOME/.config/polybar/scripts/get_default_output.py
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.foreground}
 format-underline = #03A9F4
 
 [module/alsa]
@@ -401,7 +401,7 @@ label-full-padding = 1
 format-full-prefix = ""
 format-full-background = ${colors.background-lighten-3}
 format-full-prefix-background = ${colors.background-lighten-3}
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${colors.foreground}
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -413,18 +413,18 @@ ramp-capacity-6 = 
 ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = ${colors.foreground}
 animation-discharging-framerate = 750
 
 [module/temperature]
@@ -450,7 +450,7 @@ ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ ! -z "$1" ]; then
+	backend=$(echo -e "wal\ncolorz\ncolorthief\nhaishoku" | rofi -width 10 -lines 5 -dmenu -i -p backend | awk '{print $1}')
+	[ ! -z "$backend" ] && wal --backend $backend -i "$1" -o post-wal-adjustments 
+fi

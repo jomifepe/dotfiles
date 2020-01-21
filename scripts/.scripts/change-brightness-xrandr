@@ -1,6 +1,8 @@
 #!/bin/sh
 
-CURR_XRANDR_BRIGHT=$(xrandr --verbose | awk '/Brightness/ { print $2 }')
+OUTPUT="DP-2"
+
+CURR_XRANDR_BRIGHT=$(xrandr --verbose | grep "$OUTPUT" -A10 | awk '/Brightness/ { print $2 }')
 
 if [[ $1 == "d" ]] && [ ! -z  "$2" ]; then
     NEW_XRANDR_BRIGHT=`echo "($CURR_XRANDR_BRIGHT * 100) - $2" | bc`

@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-scale '/home/jmfp/Pictures/wallpaper.png' 
+feh --no-fehbg --bg-fill '/home/jmfp/Pictures/Wallpapers/Paint/pawel-czerwinski-lDtmU_ABtcU-unsplash.jpg' 

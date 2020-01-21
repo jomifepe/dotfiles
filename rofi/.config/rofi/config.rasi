@@ -1,0 +1,11 @@
+configuration {
+	/* theme: "/home/jmfp/.config/rofi/themes/custom_wal.rasi"; */
+	theme: "/home/jmfp/.cache/wal/colors-rofi-dark.rasi";
+	modi: "drun,run";
+	width: 40;
+	font: "mono 10";
+	hide-scrollbar: true;
+	show-icons: false;
+	lines: 15;
+	columns: 1;
+}

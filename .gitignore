@@ -8,3 +8,4 @@ Thumbs.db
 logs
 *.log
 package-lock.json
+gtk/.config/gtk-3.0/bookmarks

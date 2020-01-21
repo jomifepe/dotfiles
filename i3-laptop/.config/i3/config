@@ -21,14 +21,25 @@ set $mod Mod4
 new_window pixel 1
 new_float normal
 
+set_from_resource $fg i3wm.foreground
+set_from_resource $bg i3wm.background
+set_from_resource $c1 i3wm.color9
+
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.focused          #3C454A #222B30 #FF8891 #E8555E
-  client.focused_inactive #131C21 #131C21 #E8555E #454948
-  client.unfocused        #131C21 #131C21 #E8555E #454948
-  client.urgent           #E8555E #E8555E #FFFFFF #e83a45
-  client.placeholder      #000000 #0c0c0c #FFFFFF #000000 
-  client.background       #2B2C2B
+# client.focused          #3C454A #222B30 #FF8891 #E8555E
+# client.focused_inactive #131C21 #131C21 #E8555E #454948
+# client.unfocused        #131C21 #131C21 #E8555E #454948
+# client.urgent           #E8555E #E8555E #FFFFFF #e83a45
+# client.placeholder      #000000 #0c0c0c #FFFFFF #000000 
+# client.background       #2B2C2B
+
+  client.focused          $bg $bg $fg $fg
+  client.focused_inactive $bg $bg $fg $fg
+  client.unfocused        $bg $bg $c1 $c1
+  client.urgent           $bg $bg $c1 $c1
+  client.placeholder      $bg $bg $c1 $c1 
+  client.background       $bg
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -38,7 +49,7 @@ font xft:Inconsolata Bold 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -114,10 +125,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -236,9 +247,13 @@ for_window [class="Simple-scan"] floating enable border normal
 for_window [class="(?i)System-config-printer.py"] floating enable border normal
 for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
+# for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 for_window [title="^Android Emulator"] floating enable
+for_window [class="^java-lang-Thread"] floating enable
+
+for_window [title="Android Virtual Device Manager"] floating enable
+for_window [title="Android Virtual Device Manager"] resize set 640 480
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -374,12 +389,12 @@ set_from_resource $term_color15    color15
 
 # Set inner/outer gaps
 gaps inner 12
-gaps outer 0
+gaps outer 10
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
 # gaps inner all set 10
-# gaps outer all plus 5
+# gaps outer all plus 10
 
 # Smart gaps (gaps used if only more than one container on the workspace)
 # smart_gaps on
@@ -395,6 +410,7 @@ set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
 bindsym $mod+Shift+g mode "$mode_gaps"
 
 bindsym $mod+Shift+W exec set-unsplash-collection-wallpaper
+bindsym $mod+Shift+L exec layout-manager
 bindsym $mod+Shift+P exec rofi-power-menu
 
 mode "$mode_gaps" {
@@ -436,15 +452,16 @@ hide_edge_borders both
 ################################################################################
 
 exec --no-startup-id compton -b
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
+exec --no-startup-id wal -R
+
 exec --no-startup-id xautolock -time 20 -locker $LOCKER
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id feh --bg-scale /home/jmfp/Pictures/wallpaper.png
+# exec_always --no-startup-id feh --bg-scale /home/jmfp/Pictures/wallpaper.png
 exec --no-startup-id numlockx on
-exec polybar i3 -r
-exec dropbox start
-exec synergy
+exec --no-startup-id polybar i3 -r
+# exec --no-startup-id dropbox start
+exec --no-startup-id megasync
+exec --no-startup-id synergy
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
@@ -453,9 +470,9 @@ exec --no-startup-id pamac-tray
 # exec --no-startup-id teamviewer 
 exec --no-startup-id clipit
 exec --no-startup-id mailspring --background
-exec --no-startup-id megasync
 # exec --no-startup-id blueman-applet
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id redshift-gtk
+exec --no-startup-id libinput-gestures-setup restart
 
 ################################################################################

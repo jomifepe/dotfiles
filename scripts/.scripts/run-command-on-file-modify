@@ -1,9 +1,9 @@
 #!/bin/bash
 
-echo $(realpath $1)
+FILE=$(realpath $1)
 if [ -z "$1" ] 
 then
-	echo "No filepath specified"
+	echo "No file specified"
 	exit 1
 fi
 
@@ -14,5 +14,5 @@ then
 fi
 
 while true; do
-  inotifywait -qm --event modify --format '%w' $(realpath $1) | ls -lah
+  inotifywait -qm --event modify --format '%w' $FILE | $2
 done

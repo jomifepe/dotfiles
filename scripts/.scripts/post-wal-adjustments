@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# FILE=$HOME/.cache/wal/colors-wal-st.h
+# sed -i -i '/defaultbg/c\unsigned int defaultbg = 256;' $FILE
+
+spicetify update

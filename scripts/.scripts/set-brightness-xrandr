@@ -2,6 +2,7 @@
 
 # Bash script to control the monitor brightness
 
+OUTPUT="DP-2"
 SYNTAX="\\n \\t SYNTAX:  dimmer level \\n \\t Where 'level' ranges from 0 to 100.\\n";
 
 LEVEL=$1
@@ -15,6 +16,9 @@ if [ $LEVEL -lt 0 ]; then
     exit 1;
 fi
 brightness_level="$(( $LEVEL / 100)).$(( $LEVEL % 100 ))"
-screenname=$(xrandr | grep " connected" | cut -f1 -d" ")
-xrandr --output $screenname --brightness $brightness_level;
+
+# TODO: Fix getting output name when connected to multiple
+# screenname=$(xrandr | grep " connected" | cut -f1 -d" ")
+
+xrandr --output "$OUTPUT" --brightness $brightness_level;
 echo -e "[info]: Screen Brightness level set to" $LEVEL"%"
