@@ -10,18 +10,15 @@ elif [ ${#avds[@]} -eq 1 ]; then
 	# emulator -avd "${avds[0]}" > /dev/null 2>&1 &
 	emulator -avd "${avds[0]}"
 else
+	LIST=''
 	for i in "${!avds[@]}"; do
-		echo -e "\e[97m$((i + 1))) \e[92m${avds[i]}"
+		if [ $i == 0 ]; then
+			LIST="${avds[i]}"
+		else
+			LIST="$LIST\n${avds[i]}"
+		fi
 	done
-	
-	read -p $'\e[97mChoose an emulator: ' num
 
-	if (( $num <= 0 )) || (( $num > ${#avds[@]} )); then
-		echo -e "\e[91mInvalid option"
-		echo
-	else
-		echo -e "Running \e[92m${avds[i - 1]}\e[97m..."
-		# emulator -avd "${avds[$num - 1]}" > /dev/null 2>&1 &
-		emulator -avd "${avds[$num - 1]}"
-	fi
+	option=`echo -e $LIST | rofi -width 30 -dmenu -i -p option`
+	[ ! -z "$option" ] && emulator -avd "$option"	
 fi
