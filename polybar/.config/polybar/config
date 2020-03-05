@@ -1,0 +1,75 @@
+;;  ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗ 
+;;  ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;;  ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;;  ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;;  ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;;  ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;;  Config
+;;  Docs: https://github.com/polybar/polybar/wiki
+
+;; File Inclusion
+include-file = ~/.config/polybar/colors
+include-file = ~/.config/polybar/modules
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[bar/example]
+monitor = 
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
+radius = 0
+fixed-center = false
+bottom = false
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = ${colors.border}
+
+padding-left = 0
+padding-right = 2
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "unifont:fontformat=truetype:size=8:antialias=false;2"
+font-1 = "Wuncon Siji:pixelsize=10;2"
+font-2 = "UbuntuMono Nerd Font:size=10;2"
+font-3 = "Iosevka Nerd Font:style=Medium:size=18;2"
+font-4 = "Noto Sans Symbols:size=10:antialias=true;2"
+
+modules-left = bspwm i3
+modules-center = spotify
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date notifications powermenu
+
+tray-position = right
+tray-padding = 2
+tray-background = ${colors.tray}
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[settings]
+screenchange-reload = true
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+pseudo-transparency = false

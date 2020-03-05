@@ -1,19 +1,24 @@
-default: install-yay install-packages link-config install-oh-my-fish set-shell install-nerd-fonts
+default: install-yay install-packages link-config install-oh-my-zsh set-shell 
 
 install-yay:
-	sudo pacman -S yay
+	git clone https://aur.archlinux.org/yay.git
+	cd yay && makepkg -si
+	cd .. && rm -rf yay
 
 install-packages:
-	./install-packages.sh
+	./.install/install-packages.sh
+
+install-compton:
+	# Installing the compton fork with kawase blur effect
+	git clone https://github.com/tryone144/compton.git
+	cd compton && make && make docs && make install
+	cd .. && rm -rf compton
 
 link-config:
-	./link-config.sh
+	./.install/link-config.sh
 
 set-shell:
-	chsh -s `which fish`
+	chsh -s $(which zsh)
 
-install-oh-my-fish:
-	./install-oh-my-fish.sh
-
-install-nerd-fonts:
-	./install-nerd-fonts.sh
+install-oh-my-zsh:
+	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

@@ -4,16 +4,17 @@ configuration {
  
 * {
     background-color: #00000000;
-    text-color: #E8555E;
-    font:"3270SemiNarrow Nerd Font 50";
+    background-selected-color: #2E3440;
+    text-color: #D8DEE9;
+    font:"RobotoMono Nerd Font 50";
 }
  
 #window {
   children: [ horibox ];
-  padding: 400 0 0 350;
+  padding: 400 0 0 280;
   width: 100%;
   height: 100%;
-  background-color: rgba(19, 28, 33, 0.80);
+  background-color: rgba(46, 52, 64, 0.80);
 
 }
 #horibox {
@@ -32,6 +33,6 @@ configuration {
   border-radius: 16;
 }
 #element.selected {
-  background-color: #E8555E;
-  text-color: #131C21;
+  background-color: @text-color;
+  text-color: @background-selected-color;
 }

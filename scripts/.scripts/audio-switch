@@ -20,8 +20,8 @@ function switch_sink_applications()
 
 function switch_sink()
 {
-  switch_sink_default      "$@"
-  switch_sink_applications "$@"
+   switch_sink_default      "$@"
+   switch_sink_applications "$@"
 }
 
 # Use a zenity gui to switch audio outputs
@@ -64,7 +64,7 @@ function switch_rofi()
    done
 
    # show rofi and change the audio sink
-   new_sink_id=`echo -e ${rofiopts[@]:1} | rofi -selected-row $current_idx -sep '|' -width 30 -dmenu -i -p sink | awk '{print $1}'`
+   new_sink_id=`echo -e ${rofiopts[@]:1} | rofi -selected-row $current_idx -sep '|' -width 30 -lines 10 -dmenu -i -p sink | awk '{print $1}'`
    [ ! -z $new_sink_id ] && switch_sink $new_sink_id
 }
 

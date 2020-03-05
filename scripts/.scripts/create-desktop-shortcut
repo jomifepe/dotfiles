@@ -19,14 +19,14 @@ output="[Desktop Entry]\nEncoding=UTF-8\nType=Application\nVersion=1.0\n"
 
 printf "1) System-wide\n2) User-specific\nType: "; read _type
 case "$_type" in
-	1) __filename="/usr/share/applications/" ;;
-	2) __filename="/home/jmfp/.local/share/applications/" ;;
+	1) _filename="/usr/share/applications/" ;;
+	2) _filename="$HOME/.local/share/applications/" ;;
 	*) printf "Invalid choice \n"; exit 0 ;;
 esac
 
 printf "Filename: " ;read _filename
 if [ -z "$_filename" ]; then printf "Filename is required \n"; exit 0; 
-else __filename+="$(echo "$_filename" | tr '[:upper:]' '[:lower:]').desktop"; fi
+else filename+="$(echo "$_filename" | tr '[:upper:]' '[:lower:]').desktop"; fi
 
 printf "Name: "; read _name
 if [ -z "$_name" ]; then printf "Name is required \n"; exit 0; else output+="Name=$_name\n"; fi
@@ -59,4 +59,4 @@ if [ ! -z "$_categories" ]; then output+="Categories=$_categories\n"; fi
 printf "MimeType (e.g. text/html;text/xml;): "; read _mimetype
 if [ ! -z "$_mimetype" ]; then output+="MimeType=$_mimetype\n"; fi
 
-printf "$output" > "$__filename"
+printf "$output" > "$filename"

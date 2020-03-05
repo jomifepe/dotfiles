@@ -1,11 +1,11 @@
 # dotfiles
-Configuration files for my [Manjaro](https://manjaro.org/)/[Arch Linux](https://www.archlinux.org/) and [i3](https://i3wm.org/) environment.  
-Because I use these on both my laptop and desktop, some configurations like i3 and polybar are separated to avoid having stuff like battery and brightness levels configured to appear on the desktop.
+Configuration files for my [Arch Linux](https://www.archlinux.org/) and [i3](https://i3wm.org/) environment.  
+These directories are organized in a way so that `stow` can make symbolic links to the correct locations on a real installation.
 
 ## Installation
 Firstly, clone this repo to your home folder
 ```bash
-git clone --recursive https://github.com/jomifepe/dotfiles.git ~/dotfiles
+git clone https://github.com/jomifepe/dotfiles.git ~/dotfiles
 ```
 ### Full install
 ```bash
@@ -14,4 +14,4 @@ git clone --recursive https://github.com/jomifepe/dotfiles.git ~/dotfiles
 make
 ```
 ### Personalized install
-Just run the shell scripts individualy
+Just run the shell scripts individually

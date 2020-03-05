@@ -1,0 +1,59 @@
+#  ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ 
+#  ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
+#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
+#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
+#  ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
+#  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+#  Common
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+    
+# terminal emulator
+super + Return
+	termite
+
+# program launcher
+super + d
+    rofi -combi-modi "drun,run,window,ssh" -show combi -display-combi "⬆️"
+
+# activate lock
+super + x
+    i3lock-blur mute
+
+# open audio switcher with rofi
+super + shift + a
+   audio-switch rofi
+
+# launch xkill to select a client by its X resource
+super + shift + x
+   xkill
+
+# show power menu
+super + shift + p
+   rofi-power-menu
+
+# print screen
+Print
+    flameshot gui
+
+#
+# function keys
+#
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# increase, decrease volume and mute
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+    pamixer -{i,d,t} 5
+
+# increase and decrease brightness
+XF86Mon{BrightnessUp,BrightnessDown}
+    xbacklight -{inc,dec} 5
+
+# increase and decrease brightness (bigger steps)
+ctrl + XF86Mon{BrightnessUp,BrightnessDown}
+    xbacklight -{inc,dec} 20

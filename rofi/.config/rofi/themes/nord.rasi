@@ -1,0 +1,110 @@
+* {
+    backgroundcolor: #1f232b;
+    backgroundcolortransparent: #1f232bB3;
+    bg1: #3B4252;
+    backgroundcoloralternate: #1f232b;
+    separatorcolor: #3B4252;
+    scrollbarcolor: #3B4252;
+    foregroundcolor: #95acc2;
+    foregroundcolorinverse: #95acc2;
+
+    selection-background-color: #81A1C1;
+    selection-foreground-color: @backgroundcolor;
+
+    font-size: 1px;
+    background-color: @backgroundcolor;
+    text-color: @foregroundcolor;
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    spacing: 0;
+}
+
+#listview {
+    spacing: 0;
+    scrollbar: false;
+    margin: 0;
+    dynamic: true;
+}
+
+#window {
+    background-color: @backgroundcolor;
+    border-color: @backgroundcolor;
+    border: 20;
+    border-radius: 5px;
+    // fullscreen: true;
+    // transparency: "real";
+}
+
+#mainbox {
+    border: 0;
+    // padding: 20% 20%;
+    background-color: @backgroundcoloralternate;
+}
+
+#element {
+    padding: 10 16 8 10;
+    border: 0;
+    border-color: @separatorcolor;
+    background-color: @backgroundcoloralternate;
+}
+
+#element.selected.normal {
+    background-color: @selection-background-color;
+    text-color: @selection-foreground-color;
+    border-radius: 5px;
+
+    border: 0;
+    border-color: @separatorcolor;
+}
+
+#element.alternate.normal {
+    background-color: @backgroundcoloralternate;
+}
+
+#element.normal.active {
+    background-color: #434c5e;
+}
+
+#element.alternate.active {
+    background-color: #434c5e;
+}
+
+#element.selected.active {
+    background-color: @selection-background-color;
+    text-color: @foregroundcolorinverse;
+    border-radius: 0px;
+
+    border: 0 0 1 0;
+    border-color: @separatorcolor;
+}
+
+#inputbar {
+    border: 0 solid 0 solid 1 solid 0 solid;
+    margin: 0;
+    spacing: 0;
+    border-color: @separatorcolor;
+}
+
+#prompt {
+    padding: 16;
+    background-color: @backgroundcoloralternate;
+    border: 0 1 0 0;
+}
+
+#entry {
+    padding: 16;
+}
+
+#scrollbar {
+    border: 0;
+    width: 8px;
+    handle-color: @scrollbarcolor;
+    handle-width: 8px;
+    background-color: @backgroundcoloralternate;
+}
+
+#scrollbar handle {
+    border: 1px;
+    border-color: #ff0000;
+}

@@ -1,14 +1,25 @@
 #!/bin/bash
 
+if [ -z $ANDROID_HOME ]; then
+	MSG="Please define the ANDROID_HOME environment variable with your Android SDK path"
+	echo $MSG
+	notify-send "$MSG"
+	exit 1
+fi
+
+EMULATOR_BIN=$ANDROID_HOME/emulator/emulator
+ROFI="rofi -width 30 -lines 10 -dmenu -i -p option"
+
 mapfile -t avds < <(emulator -list-avds)
 
 echo
 if [ ${#avds[@]} -eq 0 ]; then
-	echo -e "\e[91mNo android emulators found."
+	MSG="No android emulators found."
+	echo -e "\e[91m$MSG"
+	notify-send "$MSG"
 elif [ ${#avds[@]} -eq 1 ]; then
 	echo -e "\e[97mRunning \e[92m${avds[0]}\e[97m..."
-	# emulator -avd "${avds[0]}" > /dev/null 2>&1 &
-	emulator -avd "${avds[0]}"
+	$EMULATOR_BIN -avd "${avds[0]}"
 else
 	LIST=''
 	for i in "${!avds[@]}"; do
@@ -19,6 +30,6 @@ else
 		fi
 	done
 
-	option=`echo -e $LIST | rofi -width 30 -dmenu -i -p option`
-	[ ! -z "$option" ] && emulator -avd "$option"	
+	option=`echo -e $LIST | $ROFI`
+	[ ! -z "$option" ] && $EMULATOR_BIN -avd "$option"	
 fi

@@ -1,0 +1,55 @@
+#  ███████╗██╗  ██╗██╗  ██╗██╗  ██╗██████╗ 
+#  ██╔════╝╚██╗██╔╝██║  ██║██║ ██╔╝██╔══██╗
+#  ███████╗ ╚███╔╝ ███████║█████╔╝ ██║  ██║
+#  ╚════██║ ██╔██╗ ██╔══██║██╔═██╗ ██║  ██║
+#  ███████║██╔╝ ██╗██║  ██║██║  ██╗██████╔╝
+#  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+#  For i3wm
+
+# change window focus 
+super + {_,shift +} {Left,Down,Up,Right}
+	i3-msg {focus,move} {left,down,up,right}
+
+# focus the parent/child container
+super + {a,c}
+	i3-msg focus {parent,child}
+
+# move focused window
+super + {_,shift +} {j,k,l,semicolon}
+	i3-msg {focus,move} {left,down,up,right}
+
+# split in horizontal or vertical orientation
+super + {h,v}
+	i3-msg split {h,v}
+
+# enter fullscreen mode for the focused container
+super + f
+	i3-msg fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+super + {s,w,e}
+	i3-msg layout {stacking,tabbed,toggle split}
+
+# toggle tiling / floating
+super + shift + space
+	i3-msg floating toggle
+
+# change focus between tiling / floating windows
+super + space
+	i3-msg focus mode_toggle
+
+# kill focused window
+super + shift + q
+	i3-msg kill
+
+# reload the configuration file
+super + shift + c
+	i3-msg reload
+
+# restart i3 in-place
+super + shift + r
+	i3-msg restart
+
+# exit i3 (logs you out of your X session)
+super + shift + e
+	i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'

@@ -1,3 +1,6 @@
 #!/bin/bash
 
-[ $(echo -e "No\nYes" | rofi -dmenu -i -p "$1") == "Yes" ] && $2
+if [[ $(echo -e "Yes\nNo" | rofi -lines 2 -dmenu -i -p "$1") == "Yes" ]]; then
+	shift
+	$@
+fi

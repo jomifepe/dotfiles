@@ -9,26 +9,12 @@ logout=""
 switch=""
 reload=""
 
-OPTIONS_ICONS="$poweroff\n$reboot\n$sleep\n$hibernate\n$lock\n$logout\n$switch\n$reload"
-LAUNCHER_ICONS_THEME="~/.config/rofi/themes/powermenu.rasi"
+OPTIONS="$poweroff\n$reboot\n$sleep\n$hibernate\n$lock\n$logout\n$switch\n$reload"
+ROFI_TEXT="rofi -lines 10 -width 30 -dmenu -p reload"
+ROFI_ICONS="rofi -theme ~/.config/rofi/themes/powermenu.rasi -dmenu -p power-menu"
+USE_LOCKER="true"
 
-OPTIONS_TEXT="Power-off system\nReboot system\nSuspend system\nHibernate system\nLock session\nLogout session\nSwitch user\nReload UI"
-
-# source configuration or use default values
-if [ -f $HOME/.config/rofi-power/config ]; then
-  source $HOME/.config/rofi-power/config
-else
-  LAUNCHER_ICONS="rofi -theme $LAUNCHER_ICONS_THEME -dmenu -p power-menu"
-  LAUNCHER_TEXT="rofi -width 30 -dmenu -i -p option"
-  USE_LOCKER="true"
-fi
-
-# Show exit wm option if exit command is provided as an argument
-if [ ${#1} -gt 0 ]; then
-  OPTIONS="Exit window manager\n$OPTIONS_TEXT"
-fi
-
-option=`echo -e $OPTIONS_ICONS | $LAUNCHER_ICONS | awk '{print $1}' | tr -d '\r\n'`
+option=`echo -e $OPTIONS | $ROFI_ICONS | awk '{print $1}'`
 if [ ${#option} -gt 0 ]; then
     case $option in
       Exit)
@@ -41,7 +27,11 @@ if [ ${#option} -gt 0 ]; then
         systemctl reboot
         ;;
       $sleep)
-        $($USE_LOCKER) && "$LOCKER"; systemctl suspend
+        if $USE_LOCKER; then
+          notify-send DUNST_COMMAND_PAUSE && \ 
+          $LOCKER -n; notify-send DUNST_COMMAND_PAUSE && \ 
+          systemctl suspend
+        fi
         ;;
       $hibernate)
         # $($USE_LOCKER) && "$LOCKER"; systemctl hibernate
@@ -57,7 +47,7 @@ if [ ${#option} -gt 0 ]; then
         ;;
       $reload)
         RELOAD_UI_OPTIONS="i3\nPolybar\nDunst"
-        reload_option=`echo -e $RELOAD_UI_OPTIONS | $LAUNCHER_TEXT | awk '{print $1}'`
+        reload_option=`echo -e $RELOAD_UI_OPTIONS | $ROFI_TEXT | awk '{print $1}'`
         if [ ${#reload_option} -gt 0 ]; then
             case $reload_option in
               i3)

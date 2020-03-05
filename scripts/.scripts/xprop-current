@@ -1,0 +1,12 @@
+#!/bin/bash
+
+XPROP=`xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)`
+for line in "$XPROP"; do
+	echo ${line:0:1}
+	# if [[ $fl =~ [^a-zA-Z0-9] ]]; then
+	# 	echo "$line"
+	# fi
+	# if [[ $line == z* ]]; then
+		
+	# fi
+done

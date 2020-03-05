@@ -1,11 +1,22 @@
+/* 
+  ██████╗  ██████╗ ███████╗██╗
+  ██╔══██╗██╔═══██╗██╔════╝██║
+  ██████╔╝██║   ██║█████╗  ██║
+  ██╔══██╗██║   ██║██╔══╝  ██║
+  ██║  ██║╚██████╔╝██║     ██║
+  ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝ 
+  Docs: https://github.com/davatorium/rofi/wiki
+*/
+
 configuration {
-	/* theme: "/home/jmfp/.config/rofi/themes/custom_wal.rasi"; */
-	theme: "/home/jmfp/.cache/wal/colors-rofi-dark.rasi";
-	modi: "drun,run";
+	/* theme: "/usr/share/rofi/themes/custom.rasi"; */
+	theme: "~/.config/rofi/themes/nord.rasi";
+	modi: "drun,run,window,ssh";
 	width: 40;
 	font: "mono 10";
 	hide-scrollbar: true;
 	show-icons: false;
 	lines: 15;
-	columns: 1;
+	columns: 2;
+	show-icons: true;
 }

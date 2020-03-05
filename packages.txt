@@ -1,29 +1,75 @@
-aspell aspell-en
 base-devel
-compton
-cowsay lolcat sl
+pkgfile
+binutils
+fakeroot
+make
+gcc
+gvfs-smb
+ntfs-3g
+asciidoc
+xorg
+xorg-fonts-misc
+xdotool
+wmctrl
+polkit
+lxsession
+networkmanager 
+network-manager-applet
+termite
 rofi
 dunst
-feh
+polybar
+sxhkd
+redshift
+pcmanfm
 zsh
-rxvt-unicode-patched
 fzf
 git
-gnome-keyring
 gnupg
+dialog
 htop
-clipit xclip xautolock numlockx
-networkmanager network-manager-applet
-nodejs npm
+clipit
+xclip 
+numlockx
 openssh
 pacman-contrib
-playerctl
-pulseaudio pa-applet-git pavucontrol
+pulseaudio
+pulseaudio-alsa
+pavucontrol
+pamixer
+bluez
+bluez-utils
+blueman
+pulseaudio-bluetooth
+file-roller
+evince
 ripgrep
 stow
-polybar
+tree
+xdg-user-dirs
+samba
+qview
+htop
 gotop
 neofetch
+nitrogen
+dtrx
+rsync
+trash-cli
+ncdu
+mousepad
+ttf-ms-fonts
+ttf-ms-win10
+ttf-bitstream-vera
+ttf-freefont
+noto-fonts
+noto-fonts-emoji
+noto-fonts-cjk
+powerline-fonts
 synergy
-p7zip unrar
-xorg-server xorg-xbacklight xorg-xmodmap xorg-xrandr
+libinput-gestures
+flameshot
+google-chrome
+nvm
+cowsay 
+lolcat

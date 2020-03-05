@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/usr/share/icons/Tela-black'
+let g:netrw_dirhist_7='/usr/share/icons'
+let g:netrw_dirhist_6='/usr/share/themes/Nordic'
+let g:netrw_dirhist_5='/usr/share/themes'
+let g:netrw_dirhist_4='/usr/share/icons/El_Capitan_CursorsMOD'
+let g:netrw_dirhist_3='/usr/share/polkit-1/actions'
+let g:netrw_dirhist_2='/home/jmfp/dotfiles'
+let g:netrw_dirhist_1='/home/jmfp/.config/bspwm'

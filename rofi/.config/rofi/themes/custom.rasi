@@ -1,7 +1,7 @@
 * {
-    accent: #E8555E;
-    background: #131C21;
-    backgroundLighter: #1F2D36;
+    accent: #C79081;
+    background: #2B2F3B;
+    backgroundLighter: #2E3440;
     text: #A1A1A1;
 
     separatorcolor: @background;
@@ -18,7 +18,7 @@
 
 #listview {
     spacing: 0;
-    scrollbar: true;
+    scrollbar: false;
     margin: 0;
     dynamic: true;
 }
@@ -27,7 +27,7 @@
     background-color: @background;
     border-color: @separatorcolor;
     border: 0;
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
 #mainbox {

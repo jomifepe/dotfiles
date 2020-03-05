@@ -4,17 +4,22 @@ ICON=$HOME/.scripts/assets/lock.png
 TMPBG=/tmp/screenshot.png
 RES=$(xrandr | grep 'current' | sed -E 's/.*current\s([0-9]+)\sx\s([0-9]+).*/\1x\2/')
 
-# // Scrot is faster for taking the screenshot
 # import -window root $TMPBG
-scrot $TMPBG
+scrot $TMPBG # Scrot is faster
 
-# // FFMPEG is faster on bluring but loses quality
 # convert -scale 10% -blur 0x4 -resize 1000% $TMPBG $TMPBG
 # convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
 
+# FFMPEG is faster but loses quality
 ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxblur=15,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
 
-i3lock -f -i $TMPBG
+if [[ "$1" == "mute" ]]; then 
+	echo "muted"
+	notify-send DUNST_COMMAND_PAUSE; i3lock -f -i $TMPBG -n; notify-send DUNST_COMMAND_RESUME
+else
+	i3lock -f -i $TMPBG
+fi
+
 rm $TMPBG
 sleep 1
 exit 0
