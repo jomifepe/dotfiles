@@ -1,17 +1,12 @@
 #!/bin/bash
 
-if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
-fi
-
 SERVICES=(
 	"lightdm" 
 	"bluetooth"
 )
 
 function install_base_packages() {
-	pacman -S --noconfirm base-devel pkgfile binutils fakeroot git make
+	sudo pacman -S --noconfirm base-devel pkgfile binutils fakeroot git make
 }
 
 function install_yay() {
@@ -52,17 +47,17 @@ function install_oh_my_zsh() {
 
 function enable_services() {
 	for i in "${SERVICES[@]}"; do
-		systemctl enable "$i"
+		sudo systemctl enable "$i"
 	done
 }
 
 function set_shell() {
-	chsh -s $(which zsh)
+	sudo chsh -s $(which zsh)
 }
 
 function configure_lightdm() {
 	# activate the greeter
-	sed -i -i '/greeter-session/c\greeter-session=lightdm-gtk-greeter' /etc/lightdm/lightdm.conf
+	sudo sed -i -i '/greeter-session/c\greeter-session=lightdm-gtk-greeter' /etc/lightdm/lightdm.conf
 }
 
 function _install() {
