@@ -7,7 +7,7 @@ SERVICES=(
 
 function install_base_packages() {
 	echo -e "\n\e[92mInstalling base packages...\e[39m"
-	sudo pacman -S --noconfirm base-devel pkgfile binutils fakeroot git make
+	sudo pacman -S --needed --noconfirm base-devel pkgfile binutils fakeroot git make
 }
 
 function install_yay() {
@@ -20,7 +20,7 @@ function install_yay() {
 
 function install_packages() {
 	echo -e "\n\e[92mInstalling needed packages...\e[39m"
-	yay -S --needed --nocleanmenu --nodiffmenu --noeditmenu --noprovides `cat ./.install/packages`
+	yay -S --needed --nouseask --nocleanmenu --nodiffmenu --noeditmenu --noprovides `cat ./.install/packages`
 }
 
 function install_compositor() {
@@ -68,6 +68,11 @@ function configure_lightdm() {
 	sudo sed -i -i '/greeter-session/c\greeter-session=lightdm-gtk-greeter' /etc/lightdm/lightdm.conf
 }
 
+function perform_cleanup() {
+	echo -e "\n\e[92mRemoving orphan packages...\e[39m"
+	sudo pacman -Rns --noconfirm $(pacman -Qtdq)
+}
+
 function _install() {
 	install_base_packages && \
 	install_yay && \
@@ -76,7 +81,8 @@ function _install() {
 	link_config && \
 	configure_lightdm && \
 	enable_services && \
-	install_oh_my_zsh
+	install_oh_my_zsh && \
+	perform_cleanup
 }
 
 function show_help() {
