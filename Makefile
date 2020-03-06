@@ -1,4 +1,7 @@
-default: install-yay install-packages link-config install-oh-my-zsh set-shell
+default: install-base-packages install-yay install-packages link-config install-oh-my-zsh set-shell
+
+install-base-packages:
+	sudo pacman -S --noconfirm base-devel pkgfile binutils fakeroot git make
 
 install-yay:
 	git clone https://aur.archlinux.org/yay.git

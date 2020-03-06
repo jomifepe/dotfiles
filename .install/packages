@@ -3,6 +3,7 @@ pkgfile
 binutils
 fakeroot
 make
+git
 gcc
 gvfs-smb
 ntfs-3g
@@ -24,7 +25,6 @@ redshift
 pcmanfm
 zsh
 fzf
-git
 gnupg
 dialog
 htop
