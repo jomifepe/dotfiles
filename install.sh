@@ -20,7 +20,7 @@ function install_yay() {
 
 function install_packages() {
 	echo -e "\n\e[92mInstalling needed packages...\e[39m"
-	yay -S --needed --nocleanmenu --nodiffmenu --noeditmenu --noprovides `cat ./.install/packages`
+	yay -S --needed --nocleanmenu --nodiffmenu --noeditmenu --noprovides --pacman 'pacman -S --noconfirm' `cat ./.install/packages`
 }
 
 function install_compositor() {
