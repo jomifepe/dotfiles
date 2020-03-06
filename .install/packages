@@ -67,6 +67,8 @@ noto-fonts-emoji
 noto-fonts-cjk
 powerline-fonts
 synergy
+lightdm
+lightdm-gtk-greeter
 libinput-gestures
 flameshot
 google-chrome

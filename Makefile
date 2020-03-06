@@ -5,7 +5,7 @@ install-base-packages:
 
 install-yay:
 	git clone https://aur.archlinux.org/yay.git
-	cd yay && makepkg -si
+	cd yay && makepkg -si --noconfirm
 	cd .. && rm -rf yay
 
 install-packages:
