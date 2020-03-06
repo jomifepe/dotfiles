@@ -1,3 +1,3 @@
 #!/bin/bash
 
-yay -S --needed `cat packages.txt`
+yay -S --needed `cat ./.install/packages`

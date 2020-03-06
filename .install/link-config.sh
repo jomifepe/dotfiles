@@ -1,6 +1,6 @@
 #!/bin/bash
 
-COMMAND='stow --target=$HOME -R `ls -d *`'
+COMMAND='stow --adopt --target=$HOME -R `ls -d */`'
 eval "$COMMAND -nv"
 
 printf "\n\e[96mDo you want do perform this changes? (y/n): \e[39m"

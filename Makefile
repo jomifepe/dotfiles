@@ -1,4 +1,4 @@
-default: install-yay install-packages link-config install-oh-my-zsh set-shell 
+default: install-yay install-packages link-config install-oh-my-zsh set-shell
 
 install-yay:
 	git clone https://aur.archlinux.org/yay.git
@@ -22,3 +22,6 @@ set-shell:
 
 install-oh-my-zsh:
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+enable-services:
+	./.install/enable-services.sh
