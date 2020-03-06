@@ -1,3 +1,6 @@
+# This script is a work in progress, there may be some errors that cancel the whole installation. 
+# Use with care, preferably on a clean installation
+
 #!/bin/bash
 
 SERVICES=(
@@ -20,7 +23,7 @@ function install_yay() {
 
 function install_packages() {
 	echo -e "\n\e[92mInstalling needed packages...\e[39m"
-	yay -S --needed --nouseask --nocleanmenu --nodiffmenu --noeditmenu --noprovides `cat ./.install/packages`
+	yay -S --needed --nouseask --nocleanmenu --nodiffmenu --noeditmenu --noprovides `cat ./packages`
 }
 
 function install_compositor() {
@@ -91,7 +94,7 @@ Usage: $0 [OPTIONS]
 
 Options:
   -b\tInstall base packages (required to install other packages)
-  -y\tInstall Yay, which is used to install all the packages
+  -y\tInstall Yay, which is the tool used to install all the other packages
   -p\tInstall needed packages
   -o\tInstall compositor
   -l\tLink config files (stow)

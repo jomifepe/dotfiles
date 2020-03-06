@@ -3,15 +3,21 @@ Configuration files for my [Arch Linux](https://www.archlinux.org/) and [i3](htt
 These directories are organized in a way so that `stow` can make symbolic links to the correct locations on a real installation.
 
 ## Installation
-Firstly, clone this repo to your home folder
+Firstly, clone this repo to your home folder.
 ```bash
 git clone https://github.com/jomifepe/dotfiles.git ~/dotfiles
-```
-### Full install
-```bash
-# To install everything, which is not recommended in a configured environment, only on a fresh install
 
-make
+# or without git
+cd; curl -L https://github.com/jomifepe/dotfiles/tarball/master | tar -xz && mv jomifepe-* dotfiles
 ```
-### Personalized install
-Just run the shell scripts individually
+### Full installation
+```bash
+# Do this only in a clean installation
+# This is a work in progress, I cannot guarantee that everything will work
+./install.sh
+```
+### Partial installation
+Just run the install steps individually
+```bash
+./install -h # To see the individual steps
+```
