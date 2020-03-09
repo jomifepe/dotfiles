@@ -177,7 +177,7 @@ exec --no-startup-id setxkbmap -layout pt
 exec --no-startup-id lxpolkit &> /tmp/lxpolkit.log &
 exec --no-startup-id compton &> /tmp/compton.log &
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id polybar example &> /tmp/polybar.log &
+exec --no-startup-id polybar custom &> /tmp/polybar.log &
 exec --no-startup-id nm-applet &> /tmp/nm-applet.log &
 exec --no-startup-id blueman-applet &> /tmp/blueman-applet.log &
 exec --no-startup-id clipit &> /tmp/clipit.log &
