@@ -38,8 +38,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="$HOME/.config/nvm"
-export AWS_ACCESS_KEY_ID="AKIAINCLCSYPHH3JZWRA"
-export AWS_SECRET_ACCESS_KEY="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"
 
 # *** BEGIN-ALIASES-FUNCTIONS ***
 # alias ls='ls --color=auto -FN'

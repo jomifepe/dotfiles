@@ -46,7 +46,7 @@ if [ ${#option} -gt 0 ]; then
         dm-tool switch-to-greeter
         ;;
       $reload)
-        RELOAD_UI_OPTIONS="i3\nPolybar\nDunst"
+        RELOAD_UI_OPTIONS="Polybar\ni3\nDunst\nCompton"
         reload_option=`echo -e $RELOAD_UI_OPTIONS | $ROFI_TEXT | awk '{print $1}'`
         if [ ${#reload_option} -gt 0 ]; then
             case $reload_option in
@@ -58,6 +58,9 @@ if [ ${#option} -gt 0 ]; then
                 ;;
               Dunst)
                 killall dunst; exec notify-send 'Restarted Dunst'
+                ;;
+              Compton)
+                pkill -USR1 compton
                 ;;
               *)
                 ;;
