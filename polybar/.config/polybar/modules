@@ -168,11 +168,11 @@ type = internal/network
 interface = enp7s0
 interval = 3.0
 
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
-format-disconnected-prefix = " "
+format-disconnected-prefix = " "
 format-disconnected-prefix-foreground = ${colors.alert}
 label-disconnected = N/C
 
@@ -240,14 +240,14 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = "  "
+format-prefix = "    "
 format-prefix-foreground = ${colors.background}
-format-prefix-background = ${colors.secondary}
+format-prefix-background = ${colors.primary}
 format = "<label> "
-exec = python $HOME/.config/polybar/scripts/spotify_status.py -f ' {play_pause} {artist} - {song} '
 format-background = ${colors.background-alt}
-format-foreground = ${colors.foreground-alt}
+format-foreground = ${colors.foreground}
 
+exec = python $HOME/.config/polybar/scripts/spotify_status.py -f '  {play_pause}  {artist} - {song}  '
 scroll-up = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 scroll-down = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -269,10 +269,11 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-label-charging = " %percentage%%"
-format-charging = <label-charging>
-format-charging-prefix = 
+format-charging-prefix = " "
 format-charging-prefix-foreground = ${colors.foreground-alt}
+
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
 
 [module/temperature]
 type = internal/temperature
@@ -322,12 +323,14 @@ menu-2-0-exec = systemctl poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
-[module/notimute]
+[module/dnd]
 type = custom/script
-label = "M"
-click-left = notify-send DUNST_COMMAND_PAUSE
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format = "DND <label>"
+format-foreground = ${colors.foreground}
 
-[module/notiunmute]
-type = custom/script
-label = "U"
-click-left = notify-send DUNST_COMMAND_RESUME
+exec = dnd-manager status
+click-left = dnd-manager toggle
+click-right = dnd-manager --sound toggle

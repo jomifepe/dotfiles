@@ -1,4 +1,4 @@
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/oh-my-zsh"
 
 ZLE_RPROMPT_INDENT=2
 
@@ -41,6 +41,8 @@ export NVM_DIR="$HOME/.config/nvm"
 
 # *** BEGIN-ALIASES-FUNCTIONS ***
 # alias ls='ls --color=auto -FN'
+
+alias ls='ls --color=auto -F'
 alias la='exa -lah --group-directories-first'
 alias ll='exa -lh --group-directories-first'
 alias t='exa -T'
@@ -54,6 +56,7 @@ alias p='sudo pacman'
 
 alias s="cd $HOME/Dropbox/School/MEI-CM/Y1_S2"
 alias dl="cd $HOME/Downloads"
+alias hosts="sudo $EDITOR /etc/hosts"
 
 alias paci='sudo pacman -S' # install package
 alias pacrm='sudo pacman -R' # remove package
@@ -72,6 +75,10 @@ alias pacb="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 
 
 alias google-chrome='google-chrome-stable'
 alias CShell='java -jar /usr/bin/cshell/CShell.jar'
+
+# Home directory clean-up
+alias wget="wget --hsts-file $HOME/.cache/.wget-hsts"
+alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
 
 # Loading nvm on startup is slow
 alias loadnvm=". $NVM_DIR/nvm.sh && . $NVM_DIR/bash_completion"

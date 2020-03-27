@@ -1,5 +1,6 @@
 gcc
 gvfs-smb
+gvfs-mtp
 ntfs-3g
 asciidoc
 libconfig
@@ -28,6 +29,7 @@ pavucontrol
 pamixer
 bluez
 bluez-utils
+bluez-hid2hci
 blueman
 pulseaudio-bluetooth
 stow
@@ -46,11 +48,12 @@ i3lock
 redshift
 pcmanfm
 file-roller
+unrar
+dtrx
 evince
 qview
 neofetch
 nitrogen
-dtrx
 rsync
 trash-cli
 ncdu

@@ -1,0 +1,11 @@
+# Files to be ignored by gnu 'stow'
+
+\.gitattributes
+\.gitignore
+\.gitconfig
+\.git
+\.editorconfig
+\.DS_Store
+
+LICENSE.*
+README.*

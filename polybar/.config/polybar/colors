@@ -24,9 +24,9 @@
 
 background = #252A34
 background-alt = #3B4252
-foreground = #ADB3BF
+foreground = #D8DEE9
 foreground-alt = #81A1C1
-primary = #5E81AC
+primary = #88C0D0
 secondary = #8FBCBB
 alert = #BF616A
 

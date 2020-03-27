@@ -10,62 +10,31 @@ switch=""
 reload=""
 
 OPTIONS="$poweroff\n$reboot\n$sleep\n$hibernate\n$lock\n$logout\n$switch\n$reload"
+OPTIONS_RELOAD="Polybar\ni3\nDunst\nCompton"
 ROFI_TEXT="rofi -lines 10 -width 30 -dmenu -p reload"
 ROFI_ICONS="rofi -theme ~/.config/rofi/themes/powermenu.rasi -dmenu -p power-menu"
-USE_LOCKER="true"
 
 option=`echo -e $OPTIONS | $ROFI_ICONS | awk '{print $1}'`
-if [ ${#option} -gt 0 ]; then
-    case $option in
-      Exit)
-        eval $1
-        ;;
-      $poweroff)
-        systemctl poweroff
-        ;;
-      $reboot)
-        systemctl reboot
-        ;;
-      $sleep)
-        if $USE_LOCKER; then
-          notify-send DUNST_COMMAND_PAUSE && \ 
-          $LOCKER -n; notify-send DUNST_COMMAND_PAUSE && \ 
-          systemctl suspend
-        fi
-        ;;
-      $hibernate)
-        # $($USE_LOCKER) && "$LOCKER"; systemctl hibernate
-        ;;
-      $lock)
-        "$LOCKER"
-        ;;
-      $logout)
-        i3-msg exit
-        ;;
-      $switch)
-        dm-tool switch-to-greeter
-        ;;
-      $reload)
-        RELOAD_UI_OPTIONS="Polybar\ni3\nDunst\nCompton"
-        reload_option=`echo -e $RELOAD_UI_OPTIONS | $ROFI_TEXT | awk '{print $1}'`
-        if [ ${#reload_option} -gt 0 ]; then
-            case $reload_option in
-              i3)
-                i3-msg restart
-                ;;
-              Polybar)
-                pkill -USR1 polybar
-                ;;
-              Dunst)
-                killall dunst; exec notify-send 'Restarted Dunst'
-                ;;
-              Compton)
-                pkill -USR1 compton
-                ;;
-              *)
-                ;;
-            esac
-        fi
-        ;;
-    esac
-fi
+[ ${#option} -eq 0 ] && exit 1
+
+case $option in
+  	Exit) eval $1 ;;
+  	$poweroff) systemctl poweroff ;;
+  	$reboot) systemctl reboot ;;
+  	$sleep) $LOCKER; systemctl suspend ;;
+  	# $hibernate) $($USE_LOCKER) && "$LOCKER"; systemctl hibernate ;;
+  	$lock) "$LOCKER" ;;
+  	$logout) i3-msg exit ;;
+  	$switch) dm-tool switch-to-greeter ;;
+  	$reload)
+		reload_option=`echo -e $OPTIONS_RELOAD | $ROFI_TEXT | awk '{print $1}'`
+		[ ${#reload_option} -eq 0 ] && exit 1
+		case $reload_option in
+			i3) i3-msg restart ;;
+			Polybar) pkill -USR1 polybar ;;
+			Dunst) killall dunst; notify-send 'Restarted Dunst' ;;
+			Compton) pkill -USR1 compton ;;
+			*) ;;
+		esac
+		;;
+esac

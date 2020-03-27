@@ -7,7 +7,7 @@
 #  ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║
 #  ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝
 
-sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-shared" "$HOME/.config/sxhkd/sxhkdrc-bspwm" &> /tmp/sxhkd.log &
+sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-common" "$HOME/.config/sxhkd/sxhkdrc-bspwm" &> /tmp/sxhkd.log &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 

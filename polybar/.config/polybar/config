@@ -12,16 +12,16 @@ include-file = ~/.config/polybar/colors
 include-file = ~/.config/polybar/modules
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 [bar/custom]
 monitor = 
-width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-radius = 0
+width = 98.5%
+height = 30
+offset-x = 15
+offset-y = 10
+radius = 4
 fixed-center = false
 bottom = false
 enable-ipc = true
@@ -48,16 +48,18 @@ font-4 = "Noto Sans Symbols:size=10:antialias=true;2"
 
 modules-left = bspwm i3
 modules-center = spotify
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu battery temperature eth wlan date powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu battery temperature eth wlan dnd date powermenu
 
 tray-position = right
 tray-padding = 2
 tray-background = ${colors.tray}
+tray-offset-x = 0
+tray-detached = false
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev

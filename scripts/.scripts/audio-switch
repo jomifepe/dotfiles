@@ -1,36 +1,32 @@
 #!/bin/bash
 
-function list_sinks()
-{
+function list_sinks() {
    pacmd list-sinks | grep -E 'index:|name:'
 }
 
-function switch_sink_default()
-{
+function switch_sink_default() {
    pacmd set-default-sink $1 || echo failed
 }
 
-function switch_sink_applications()
-{
-   pacmd list-sink-inputs | 
-      awk '/index:/{print $2}' |
-      xargs -r -I{} pacmd move-sink-input {} $1 ||
-      echo failed
+function switch_sink_applications() {
+   pacmd list-sink-inputs | awk '/index:/{print $2}' | xargs -r -I{} pacmd move-sink-input {} $1 || echo failed
 }
 
-function switch_sink()
-{
+function switch_sink() {
    switch_sink_default      "$@"
    switch_sink_applications "$@"
 }
 
-# Use a zenity gui to switch audio outputs
-function switch_gui()
-{
+function get_sink_info() {
    # get current output id, all output ids and the sink names
    current_id=$(pacmd list-sinks | egrep '\* index:' | egrep -o '[0-9]+$')
    ids=($(pacmd list-sinks | egrep 'index:' | egrep -o '[0-9]+$' | tr '\n' ' '))
-   names=($(pacmd list-sinks | egrep 'name:' | cut -d'.' -f2,3,4,5 | tr -d '>'))
+   names=($(pacmd list-sinks | grep 'name:' | cut -d'<' -f2 | cut -d '>' -f1))
+}
+
+# Use a zenity gui to switch audio outputs
+function switch_gui() {
+   get_sink_info
 
    zen_pars="--list --radiolist --column '' --column 'ID' --column 'Sink_name'"
 
@@ -50,12 +46,8 @@ function switch_gui()
 }
 
 # Use a rofi dmenu to select audio outputs
-function switch_rofi()
-{
-   # get current output id, all output ids and the sink names
-   current_id=$(pacmd list-sinks | egrep '\* index:' | egrep -o '[0-9]+$')
-   ids=($(pacmd list-sinks | egrep 'index:' | egrep -o '[0-9]+$' | tr '\n' ' '))
-   names=($(pacmd list-sinks | egrep 'name:' | cut -d'.' -f2,3,4,5 | tr -d '>'))
+function switch_rofi() {
+   get_sink_info
 
    # construct rofi options
    for i in "${!ids[@]}"; do 
@@ -64,12 +56,11 @@ function switch_rofi()
    done
 
    # show rofi and change the audio sink
-   new_sink_id=`echo -e ${rofiopts[@]:1} | rofi -selected-row $current_idx -sep '|' -width 30 -lines 10 -dmenu -i -p sink | awk '{print $1}'`
+   new_sink_id=`echo -e ${rofiopts[@]:1} | rofi -selected-row $current_idx -sep '|' -width 35 -lines 8 -dmenu -i -p sink | awk '{print $1}'`
    [ ! -z $new_sink_id ] && switch_sink $new_sink_id
 }
 
-function help_me()
-{
+function help_me() {
    echo "Usage: $0 [gui|rofi|list|<sink name to switch to>]"
 }
 

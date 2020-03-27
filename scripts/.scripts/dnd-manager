@@ -1,0 +1,57 @@
+#!/bin/bash
+
+FILE=/tmp/dnd-status
+
+function turn_on() {
+	notify-send DUNST_COMMAND_PAUSE
+	[ ! -z "$SOUND" ] && pamixer -m
+	echo 1 > $FILE
+	echo "DND turned ON"
+}
+
+function turn_off() {
+	notify-send DUNST_COMMAND_RESUME
+	[ ! -z "$SOUND" ] && pamixer -u
+	echo 0 > $FILE
+	echo "DND turned OFF"
+}
+
+function read_file() {
+	grep -m1 1 $FILE > /dev/null 2>&1
+}
+
+function print_help() {
+	echo -e "
+Usage: dnd-manager [OPTIONS] [COMMAND]
+
+Options:
+  -s, --sound   Mute/unmute the default sound output
+  -h, --help    Print this help message
+
+Commands:
+  on            Turn do not disturb ON
+  off           Turn do not disturb OFF
+  toggle        Toggle do not disturb
+  status        Print out the current state
+	"
+}
+
+# Handling the options
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+	case $1 in
+		-s|--sound) SOUND=1; shift; ;;
+		-h|--help) print_help; exit 0 ;;
+		*) POSITIONAL+=("$1"); shift ;;
+	esac
+done
+set -- "${POSITIONAL[@]}" 
+
+# Handling the commands
+case "${1:-}" in
+   (on)   	turn_on ;;
+   (off)    turn_off ;;
+   (toggle)	read_file && turn_off || turn_on ;;
+	(status) read_file && echo ON || echo OFF ;;
+   (*)      print_help ;;
+esac

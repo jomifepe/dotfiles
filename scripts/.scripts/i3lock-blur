@@ -12,9 +12,13 @@ scrot $TMPBG
 # convert $TMPBG $ICON -gravity center -composite -matte $TMPBG
 ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxblur=15,overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -vframes 1 $TMPBG -loglevel quiet
 
-if [[ "$1" == "mute" ]]; then 
-	# TODO: don't unmute if notifications were muted before locking
-	notify-send DUNST_COMMAND_PAUSE; i3lock -f -i $TMPBG -n; notify-send DUNST_COMMAND_RESUME
+if [[ "$1" == "mute" ]]; then
+	MUTED=$(dnd-manager status)
+	if [[ "$MUTED" == "ON" ]]; then
+		i3lock -f -i $TMPBG
+	else
+		dnd-manager -s on; i3lock -f -i $TMPBG -n; dnd-manager -s off
+	fi
 else
 	i3lock -f -i $TMPBG
 fi

@@ -39,7 +39,7 @@
     
     # The geometry of the window:
     # [{width}]x{height}[+/-{x}+/-{y}]
-    geometry = "500x10-8+38"
+    geometry = "500x10-10+48"
     
     # Display notification on focused monitor (mouse, keyboard or none)
     follow = mouse

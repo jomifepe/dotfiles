@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[ -z "$1" ] && exit 1
+
+# Apps that have some action bound to Alt+Left/Right
+APPS=("pcmanfm")
+
+WIN=`xprop -id $(xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)`
+ROLE=`echo "$WIN" | grep WM_WINDOW_ROLE | cut -d'"' -f2`
+CLASS=`echo "$WIN" | grep WM_CLASS | cut -d'"' -f2`
+
+if [[ "${ROLE,,}" == "browser" ]] || [[ "${APPS[@]^^}" =~ "${CLASS^^}" ]]; then
+	xdotool key "$1"
+fi

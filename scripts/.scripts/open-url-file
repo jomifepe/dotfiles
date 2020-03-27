@@ -1,0 +1,4 @@
+#!/bin/bash
+# This script parses .url files that work on windows and is meant to be used by a file manager
+
+[ ! -z "$1" ] && bash -c "cat $1 | grep URL | cut -d'=' -f2 | xargs ${BROWSER:=firefox} &" > /dev/null 2>&1 || exit 1

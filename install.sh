@@ -76,16 +76,34 @@ function perform_cleanup() {
 	sudo pacman -Rns --noconfirm $(pacman -Qtdq)
 }
 
-function _install() {
-	install_base_packages && \
-	install_yay && \
-	install_packages && \
-	install_compositor && \
-	link_config && \
-	configure_lightdm && \
-	enable_services && \
-	install_oh_my_zsh && \
-	perform_cleanup
+function install() {
+	printf "
+Performing a \e[92mfull install\e[39m:
+
+  1. Installing base packages (for compiling and building)
+  2. Installing Yay
+  3. Installing needed packages (full list)
+  4. Installing a compositor
+  5. Symlinking user configuration files (using stow)
+  6. Configuring LightDM 
+  7. Enabling needed services
+  8. Installing Oh My Zsh & Setting shell
+  9. Performing clean-up
+
+Proceed with installation? [\e[92mY\e[39m/\e[91mn\e[39m] \e[39m"
+
+  	read REPLY
+	if [[ $REPLY =~ ^[Yy]$ ]]; then
+		install_base_packages && \
+		install_yay && \
+		install_packages && \
+		install_compositor && \
+		link_config && \
+		configure_lightdm && \
+		enable_services && \
+		install_oh_my_zsh && \
+		perform_cleanup
+	fi
 }
 
 function show_help() {
@@ -131,4 +149,4 @@ while getopts ":bypoleh" opt; do
 done
 shift $((OPTIND-1))
 
-(( $OPTIND == 1 )) && _install
+(( $OPTIND == 1 )) && install

@@ -16,8 +16,9 @@ new_float normal
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-gaps inner 12
-gaps outer 5
+gaps inner 15
+gaps outer 0
+gaps top 40
 smart_borders no_gaps
 hide_edge_borders both
 border_radius 4
@@ -149,6 +150,7 @@ mode "$mode_gaps_outer" {
 
 assign [class="Caprine"] $ws4
 assign [class="whatsappweb-nativefier-d40211"] $ws4
+assign [class="discord"] $ws4
 
 for_window [class="Galculator"] 	floating enable border pixel 1
 for_window [class="Galculator"] resize set 440 480
@@ -157,11 +159,14 @@ for_window [class="GParted"] floating enable border normal
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Skype"] floating enable border normal
 for_window [title="^Android Emulator"] floating enable
+for_window [title="^Welcome to Android Studio"] floating enable
 for_window [title="^Starting Unity"] floating enable
 for_window [class="Unity" title="Home"] floating enable
 for_window [class="Unity" title="^Hold on"] floating enable
-for_window [class="Unity" title="^Hold on"] floating enable
 for_window [title="win0"] floating enable
+for_window [class="Katalon Studio" title="^Rename"] floating enable
+for_window [class="firefox" title="^About"] floating enable
+for_window [class="Katalon Studio" title="^Rename"] floating enable
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable 
@@ -172,7 +177,7 @@ for_window [window_type="menu"] floating enable
 
 # for_window [urgent=latest] focus
 
-exec --no-startup-id sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-shared" "$HOME/.config/sxhkd/sxhkdrc-i3wm" &> /tmp/sxhkd.log &
+exec --no-startup-id sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-common" "$HOME/.config/sxhkd/sxhkdrc-i3wm" &> /tmp/sxhkd.log &
 exec --no-startup-id setxkbmap -layout pt
 exec --no-startup-id lxpolkit &> /tmp/lxpolkit.log &
 exec --no-startup-id compton &> /tmp/compton.log &

@@ -19,5 +19,20 @@ cd; curl -L https://github.com/jomifepe/dotfiles/tarball/master | tar -xz && mv 
 ### Partial installation
 Just run the install steps individually
 ```bash
-./install -h # To see the individual steps
+# To see the individual steps
+./install.sh -h
+```
+
+## More Information
+
+## [sxhkd](https://github.com/baskerville/sxhkd)
+
+### sxhkd is a simple X hotkey daemon, by the developer of bspwm, that reacts to input events by executing commands.
+
+### Why use this?
+
+This daemon allows users to share common hotkeys between different window managers, providing some modularity. For example, [i3](https://build.i3wm.org/docs/i3-msg.html) hotkeys are usually define on its configuration file, but they can be executed using the `i3-msg` command, so it's possible have all its hotkeys on a wm specific `sxhkd` config file. These files can then be combine by using the following command:
+
+```
+sxhkd -c COMMON_CONFIG WM_SPECIFIC_CONFIG
 ```

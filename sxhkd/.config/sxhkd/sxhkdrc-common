@@ -16,7 +16,7 @@ super + Return
 
 # program launcher
 super + d
-    rofi -combi-modi "drun,run,window,ssh" -show combi -display-combi "⬆️"
+    rofi -combi-modi "drun,window,ssh" -show combi -display-combi "⬆️"
 
 # activate lock
 super + x
@@ -33,6 +33,10 @@ super + shift + x
 # show power menu
 super + shift + p
    rofi-power-menu
+
+# show power menu
+super + p
+   rofi-pass
 
 # print screen
 Print
