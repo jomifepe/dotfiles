@@ -1,4 +1,3 @@
-aspell aspell-en
 base-devel
 compton
 cowsay lolcat sl
