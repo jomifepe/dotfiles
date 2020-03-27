@@ -38,8 +38,6 @@ alias i3conf="vim $HOME/.config/i3/config"
 alias polyconf="vim $HOME/.config/polybar/config"
 alias zshconf="vim $HOME/.zshrc"
 
-alias minecraft-server-1.12.2='cd /media/storage/Games/Minecraft/minecraft-server-1.12.2/; sh ./start-forge-server.sh'
-
 function homestead() { ( cd ~/Homestead && vagrant $* ) }
 function sfind() { pacman -Qql $1 | grep -Fe .service -e .socket }
 function pport() { sudo lsof -i:$1 }
