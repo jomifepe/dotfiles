@@ -334,3 +334,12 @@ format-foreground = ${colors.foreground}
 exec = dnd-manager status
 click-left = dnd-manager toggle
 click-right = dnd-manager --sound toggle
+
+[module/micmute]
+type = custom/script
+interval = 1
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+
+exec = exec $HOME/.config/polybar/scripts/get-microphone-mute.sh
+click-left = amixer set Capture toggle

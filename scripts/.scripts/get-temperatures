@@ -1,3 +1,4 @@
 #!/bin/sh
+# Used to include nvidia's GPU temperature on the sensors command output
 
 echo -e "$(sensors)\n\n$(nvidia-smi --format=csv,noheader --query-gpu="gpu_name,temperature.gpu" | tr , :)°C"

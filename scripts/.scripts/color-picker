@@ -1,18 +1,8 @@
 #!/bin/bash
-
-if [[ -z $(pacman -Qs xclip) ]]; then
-  echo "The package xclip is not installed"
-  exit 1
-fi
-
-if [[ -z $(pacman -Qs rofi) ]]; then
-  echo "The package rofi is not installed"
-  exit 1
-fi
+# Simple script that uses a fast colorpicker for X11 and rofi to show the output
+# https://github.com/jomifepe/colorpicker
 
 COLOR=`colorpicker --one-shot` 
-if [ -n "$COLOR" ]; then
-	sleep .2
-	VALUE=`echo -e "$COLOR" | rofi -dmenu -width 30 -lines 2 -p format | awk -F': ' '{print $2}'`
-	[ -n "$VALUE" ] && echo -n $VALUE | xclip -selection c
-fi
+[ -z "$COLOR" ] && exit 1
+sleep .2 && VALUE=`echo -e "$COLOR" | rofi -width 30 -lines 2 -dmenu -i -p format | awk -F': ' '{print $2}'`
+[ -n "$VALUE" ] && echo -n $VALUE | xclip -selection c

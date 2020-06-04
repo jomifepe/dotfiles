@@ -9,6 +9,7 @@ logout=""
 switch=""
 reload=""
 
+LOCKER="i3lock-blur"
 OPTIONS="$poweroff\n$reboot\n$sleep\n$hibernate\n$lock\n$logout\n$switch\n$reload"
 OPTIONS_RELOAD="Polybar\ni3\nDunst\nCompton"
 ROFI_TEXT="rofi -lines 10 -width 30 -dmenu -p reload"

@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =8
+let g:netrw_dirhistcnt =0
+let g:netrw_dirhist_0='/home/jmfp/Dev/JS/Mobility/.git'
+let g:netrw_dirhist_9='/home/jmfp/Joao'
 let g:netrw_dirhist_8='/usr/share/icons/Tela-black'
 let g:netrw_dirhist_7='/usr/share/icons'
 let g:netrw_dirhist_6='/usr/share/themes/Nordic'

@@ -34,11 +34,15 @@ super + shift + x
 super + shift + p
    rofi-power-menu
 
-# show power menu
+# show rofi pass
 super + p
    rofi-pass
-
+   
 # print screen
+shift + Print
+    rofi-screenshot
+
+# print screen (selection)
 Print
     flameshot gui
 
@@ -46,13 +50,13 @@ Print
 # function keys
 #
 
-# make sxhkd reload its configuration files:
-super + Escape
-	pkill -USR1 -x sxhkd
-
-# increase, decrease volume and mute
+# volume controls
 XF86Audio{RaiseVolume,LowerVolume,Mute}
     pamixer -{i,d,t} 5
+
+# media controls
+XF86Audio{Play,Pause,Next,Prev}
+    playerctl {play,pause,next,previous}
 
 # increase and decrease brightness
 XF86Mon{BrightnessUp,BrightnessDown}

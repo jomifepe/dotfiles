@@ -30,7 +30,7 @@ xsetroot -cursor_name left_ptr & # Changing the cursor to a pointer at startup
 lxpolkit &> /tmp/lxpolkit.log &
 nitrogen --restore
 compton &> /tmp/compton.log &
-polybar example &> /tmp/polybar.log &
+polybar custom &> /tmp/polybar.log &
 numlockx on
 nm-applet &
 blueman-applet &

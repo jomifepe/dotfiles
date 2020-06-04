@@ -35,13 +35,14 @@ plugins=(
 	zsh-autosuggestions
 )
 
+# Fix slow pasting cause by zsh-autosuggestions
+DISABLE_MAGIC_FUNCTIONS=true
+
 source $ZSH/oh-my-zsh.sh
 
 export NVM_DIR="$HOME/.config/nvm"
 
 # *** BEGIN-ALIASES-FUNCTIONS ***
-# alias ls='ls --color=auto -FN'
-
 alias ls='ls --color=auto -F'
 alias la='exa -lah --group-directories-first'
 alias ll='exa -lh --group-directories-first'
@@ -74,11 +75,12 @@ alias pacsfo='pacman -Qo' # search the owner of a file
 alias pacb="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'" # browse installed packages
 
 alias google-chrome='google-chrome-stable'
-alias CShell='java -jar /usr/bin/cshell/CShell.jar'
+alias CShell='java -jar /usr/bin/cshell/CShell.jar' # school vpn
+alias youtube-dl-mp3='youtube-dl -f bestaudio -x --audio-format mp3 --embed-thumbnail --audio-quality 0'
 
 # Home directory clean-up
 alias wget="wget --hsts-file $HOME/.cache/.wget-hsts"
-alias nvidia-settings="nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings"
+alias nvidia-settings="nvidia-settings --config=$XDG_CONFIG_HOME/.nvidia-settings-rc"
 
 # Loading nvm on startup is slow
 alias loadnvm=". $NVM_DIR/nvm.sh && . $NVM_DIR/bash_completion"

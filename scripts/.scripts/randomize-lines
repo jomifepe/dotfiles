@@ -1,26 +1,20 @@
 #!/bin/sh
+# Script that takes multiple input lines and randomizes them
+# Can print the result and send it to the clipboard
 
 while getopts ":csh" opt; do
   	case ${opt} in
-    	c)
-			copy=1
-			;;
-		s)
-			silent=1
-			;;
-    	h|\?) 
-			echo -e "Usage: $0 [OPTION]\n  -c\tcopies the output to clipboard (uses xclip)\n  -s\toperates silently, doesn't print the output"
-			exit 0
-			;;
+    	c) copy=1 ;;
+		s) silent=1 ;;
+    	h|\?) echo -e "Usage: $0 [OPTION]\n  -c\tcopies the output to clipboard (uses xclip)\n  -s\toperates silently, doesn't print the output" && exit 0 ;;
   	esac
 done
 
 TMPFILE="/tmp/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1).tmp"
-$EDITOR $TMPFILE
+${EDITOR:-vi} $TMPFILE
+[ ! -f "$TMPFILE" ] && exit 1
 
-if [ -f "$TMPFILE" ]; then
-	RND=$(sort --random-sort $TMPFILE)
-	[[ $silent != 1 ]] && echo $"$RND"
-	[[ $copy == 1 ]] && echo $"$RND" | xclip -sel clip
-	rm $TMPFILE
-fi
+RND=$(sort --random-sort $TMPFILE)
+[[ $silent != 1 ]] && echo $"$RND"
+[[ $copy == 1 ]] && echo $"$RND" | xclip -sel clip
+rm $TMPFILE

@@ -1,0 +1,26 @@
+#!/bin/bash
+# simple rofi menu for multiple screenshot options
+# uses flameshot and scrot
+
+IMGPATH="$HOME/Pictures/Screenshots"
+SCROTFN="$IMGPATH/%Y-%m-%d_%H-%M.png"
+
+OPTFS="Full-screen capture"
+OPTFF="Free-form capture"
+OPTCW="Current window capture"
+OPTWS="Window selection capture"
+
+option=$(echo -e "$OPTFS\n$OPTFF\n$OPTCW\n$OPTWS" | rofi -width 20 -lines 6 -dmenu -i -p screenshot)
+[ -z "$option" ] && exit 0
+delay=$(echo -e "0 seconds\n1 second\n2 seconds\n3 seconds\n4 seconds\n5 seconds" | rofi -width 10 -lines 6 -dmenu -i -p delay | awk '{print $1}')
+[ -z "$delay" ] && delay=0
+
+notify() { notify-send "Capture saved to $IMGPATH" && notify-send "Capture saved to clipboard"; }
+wait() { [ "$delay" -gt 0 ] && notify-send "Waiting for $delay seconds before screenshotting..."; sleep $delay; }
+
+case $option in
+  	$OPTFS) wait && flameshot full -p $IMGPATH -c ;;
+  	$OPTFF) wait && flameshot gui ;;
+  	$OPTCW) wait && sleep .2 && scrot -u -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify ;;
+  	$OPTWS) wait && sleep .2 && scrot -a $(slop -f '%x,%y,%w,%h') -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify ;;
+esac

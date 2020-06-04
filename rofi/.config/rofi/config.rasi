@@ -11,7 +11,7 @@
 configuration {
 	/* theme: "/usr/share/rofi/themes/custom.rasi"; */
 	theme: "~/.config/rofi/themes/nord.rasi";
-	modi: "drun,run,window,ssh";
+	modi: "run,drun,window,ssh";
 	width: 40;
 	font: "mono 10";
 	hide-scrollbar: true;

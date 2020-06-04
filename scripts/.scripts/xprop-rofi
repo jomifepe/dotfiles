@@ -1,0 +1,9 @@
+#!/bin/bash
+# Script that takes some of the output of xprop and displays it using rofi
+# If you select an option, the right side of the string, separated by "=", get copied to the clipboard
+
+XPROP=`xprop | cut -f 2 | grep -i 'WM_CLASS\|WM_WINDOW_ROLE\|WM_NAME\|_NET_WM_WINDOW_TYPE\|_NET_WM_PID\|WM_PROTOCOLS\|_NET_WM_STATE'`
+OPTION=`echo -e "$XPROP" | rofi -width 50 -lines 8 -dmenu -columns 1 -i -p option | cut -d'=' -f2`
+[ ${#OPTION} -eq 0 ] && exit 1
+
+echo "${OPTION:1:${#OPTION}}" | tr '\n' ' ' | xclip -selection c

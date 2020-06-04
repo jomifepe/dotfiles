@@ -48,7 +48,7 @@ font-4 = "Noto Sans Symbols:size=10:antialias=true;2"
 
 modules-left = bspwm i3
 modules-center = spotify
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu battery temperature eth wlan dnd date powermenu
+modules-right = filesystem xbacklight pulseaudio micmute xkeyboard memory cpu battery temperature eth wlan dnd date powermenu
 
 tray-position = right
 tray-padding = 2
