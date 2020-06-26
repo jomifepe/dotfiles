@@ -178,7 +178,7 @@ label-disconnected = N/C
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
 date = " %a, %d %b"
 date-alt = " %A, %d %B %Y"

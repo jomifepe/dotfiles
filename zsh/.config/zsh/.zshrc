@@ -74,6 +74,7 @@ alias pacsf='pacman -Fs' # search the package of a file
 alias pacsfo='pacman -Qo' # search the owner of a file
 alias pacb="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'" # browse installed packages
 
+alias ssh='TERM='xterm-256color' ssh'
 alias google-chrome='google-chrome-stable'
 alias CShell='java -jar /usr/bin/cshell/CShell.jar' # school vpn
 alias youtube-dl-mp3='youtube-dl -f bestaudio -x --audio-format mp3 --embed-thumbnail --audio-quality 0'
