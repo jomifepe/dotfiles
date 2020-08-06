@@ -16,9 +16,7 @@ function turn_off() {
 	echo "DND turned OFF"
 }
 
-function read_file() {
-	grep -m1 1 $FILE > /dev/null 2>&1
-}
+function read_file() { grep -m1 1 $FILE > /dev/null 2>&1; }
 
 function print_help() {
 	echo -e "
@@ -36,7 +34,6 @@ Commands:
 	"
 }
 
-# Handling the options
 POSITIONAL=()
 while [[ $# -gt 0 ]]; do
 	case $1 in
@@ -47,7 +44,6 @@ while [[ $# -gt 0 ]]; do
 done
 set -- "${POSITIONAL[@]}" 
 
-# Handling the commands
 case "${1:-}" in
    (on)   	turn_on ;;
    (off)    turn_off ;;

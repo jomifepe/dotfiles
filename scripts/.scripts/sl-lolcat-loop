@@ -1,5 +1,4 @@
 #!/bin/sh
 
-while true; do 
-	sl | lolcat
-done
+trap "exit" INT
+while [ 1 ]; do sl -e | lolcat || break; done

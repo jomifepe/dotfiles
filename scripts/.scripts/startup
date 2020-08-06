@@ -1,0 +1,20 @@
+#!/bin/bash
+# Common startup script
+
+xrandr --output DP-2 --auto --output HDMI-0 --auto --above DP-2
+
+sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-common" "$HOME/.config/sxhkd/sxhkdrc-i3wm" &> /tmp/sxhkd.log &
+setxkbmap -layout pt
+lxpolkit &> /tmp/lxpolkit.log &
+picom &> /dev/null &
+nitrogen --restore
+launch-polybar
+nm-applet &> /tmp/nm-applet.log &
+blueman-applet &> /tmp/blueman-applet.log &
+clipit &> /tmp/clipit.log &
+numlockx on
+libinput-gestures-setup start &
+dropbox start &> /tmp/dropbox.log & 
+redshift-gtk &> /tmp/redshift-gtk.log & 
+mailspring -b &> /tmp/mailspring.log &
+synergy &> /tmp/synergy.log &

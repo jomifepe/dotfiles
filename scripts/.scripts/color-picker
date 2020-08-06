@@ -4,5 +4,5 @@
 
 COLOR=`colorpicker --one-shot` 
 [ -z "$COLOR" ] && exit 1
-sleep .2 && VALUE=`echo -e "$COLOR" | rofi -width 30 -lines 2 -dmenu -i -p format | awk -F': ' '{print $2}'`
+sleep .2 && VALUE=`echo -e "$COLOR" | rofi -width 30 -lines 2 -dmenu -i -p format | awk -F':' '{print $2}'`
 [ -n "$VALUE" ] && echo -n $VALUE | xclip -selection c

@@ -15,12 +15,12 @@ ffmpeg -f x11grab -video_size $RES -y -i $DISPLAY -i $ICON -filter_complex "boxb
 if [[ "$1" == "mute" ]]; then
 	MUTED=$(dnd-manager status)
 	if [[ "$MUTED" == "ON" ]]; then
-		i3lock -f -i $TMPBG
+		i3lock -f -t -i $TMPBG
 	else
-		dnd-manager -s on; i3lock -f -i $TMPBG -n; dnd-manager -s off
+		dnd-manager -s on; i3lock -f -t -i $TMPBG -n; dnd-manager -s off
 	fi
 else
-	i3lock -f -i $TMPBG
+	i3lock -f -t -i $TMPBG
 fi
 
 rm $TMPBG

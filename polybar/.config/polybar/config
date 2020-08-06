@@ -16,7 +16,7 @@ margin-top = 0
 margin-bottom = 0
 
 [bar/custom]
-monitor = 
+monitor = ${env:MONITOR:}
 width = 98.5%
 height = 30
 offset-x = 15

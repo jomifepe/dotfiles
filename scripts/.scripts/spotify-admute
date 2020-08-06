@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script mutes spotify ads, shocker
-# Current method: Watching dbus for the current song's artwork, ads don't show any
+# It uses the method of watching dbus for the current song's artwork, because ads don't have any
 # There are better alternatives that really block the ads, but since spotify keeps patching on their side, 
 # you can always use this to peacefully listen to music without obnoxious ads
 

@@ -116,7 +116,14 @@ mode "resize" {
 	bindsym Escape mode "default"
 }
 
+set $move_workspace Move Workspace
+bindsym $mod+shift+m exec move-i3-workspace
+
 # Changing gap size
+set $mode_gaps Gaps (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+g mode "$mode_gaps"
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
         bindsym i      mode "$mode_gaps_inner"
@@ -169,7 +176,7 @@ for_window [class="Katalon Studio" title="^Rename"] floating enable
 for_window [class="firefox" title="^About"] floating enable
 for_window [title="^Shiginima"] floating enable
 for_window [class="MultiMC"] floating enable
-for_window [class="scrcpy"] floating enable
+# for_window [class="scrcpy"] floating enable
 for_window [title="Task Manager - Google Chrome"] floating enable
 for_window [class="zoom" title="Settings"] floating enable
 
@@ -184,18 +191,4 @@ for_window [window_type="notification"] floating enable
 
 # for_window [urgent=latest] focus
 
-exec --no-startup-id sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-common" "$HOME/.config/sxhkd/sxhkdrc-i3wm" &> /tmp/sxhkd.log &
-exec --no-startup-id setxkbmap -layout pt
-exec --no-startup-id lxpolkit &> /tmp/lxpolkit.log &
-exec --no-startup-id compton &> /tmp/compton.log &
-exec --no-startup-id nitrogen --restore
-exec --no-startup-id polybar custom &> /tmp/polybar.log &
-exec --no-startup-id nm-applet &> /tmp/nm-applet.log &
-exec --no-startup-id blueman-applet &> /tmp/blueman-applet.log &
-exec --no-startup-id clipit &> /tmp/clipit.log &
-exec --no-startup-id numlockx on
-exec --no-startup-id libinput-gestures-setup start &
-exec --no-startup-id dropbox start &> /tmp/dropbox.log & 
-exec --no-startup-id redshift-gtk &> /tmp/redshift-gtk.log & 
-exec --no-startup-id mailspring -b &> /tmp/mailspring.log &
-exec --no-startup-id synergy &> /tmp/synergy.log &
+exec --no-startup-id $HOME/.scripts/startup

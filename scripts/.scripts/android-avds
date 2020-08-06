@@ -1,22 +1,19 @@
 #!/bin/bash
-
-if [ -z $ANDROID_HOME ]; then
-	MSG="Please define the ANDROID_HOME environment variable with your Android SDK path"
-	echo $MSG
-	notify-send "$MSG"
-	exit 1
-fi
+# Used for launching the android emulator from the command line
 
 EMULATOR_BIN=$ANDROID_HOME/emulator/emulator
 ROFI="rofi -width 30 -lines 10 -dmenu -i -p option"
+
+function print() { echo "$1"; notify-send "$1"; }
+
+[ -z $ANDROID_HOME ] && print "Please define the ANDROID_HOME environment variable with your Android SDK path" && exit 1
+[ ! -f "$EMULATOR_BIN" ] && print "Couldn't find emulator binary (https://developer.android.com/studio/run/emulator-commandline)" && exit 1
 
 mapfile -t avds < <(emulator -list-avds)
 
 echo
 if [ ${#avds[@]} -eq 0 ]; then
-	MSG="No android emulators found."
-	echo -e "\e[91m$MSG"
-	notify-send "$MSG"
+	print "No android emulators found."; exit 1
 elif [ ${#avds[@]} -eq 1 ]; then
 	echo -e "\e[97mRunning \e[92m${avds[0]}\e[97m..."
 	$EMULATOR_BIN -avd "${avds[0]}"

@@ -1,18 +1,8 @@
 #!/bin/bash
 
-FILE=$(realpath $1)
-if [ -z "$1" ] 
-then
-	echo "No file specified"
-	exit 1
-fi
-
-if [ -z "$2" ] 
-then
-	echo "No command specified"
-	exit 1
-fi
+[ -z "$1" ] && echo "No file specified" && exit 1
+[ -z "$2" ] && echo "No command specified" && exit 1
 
 while true; do
-  inotifywait -qm --event modify --format '%w' $FILE | $2
+  inotifywait -qm --event modify --format '%w' "$(realpath $1)" | $2
 done

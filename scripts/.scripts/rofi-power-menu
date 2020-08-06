@@ -32,7 +32,7 @@ case $option in
 		[ ${#reload_option} -eq 0 ] && exit 1
 		case $reload_option in
 			i3) i3-msg restart ;;
-			Polybar) pkill -USR1 polybar ;;
+			Polybar) launch-polybar ;;
 			Dunst) killall dunst; notify-send 'Restarted Dunst' ;;
 			Compton) pkill -USR1 compton ;;
 			*) ;;

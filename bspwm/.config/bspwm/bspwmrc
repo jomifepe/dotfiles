@@ -7,8 +7,6 @@
 #  ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║
 #  ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝
 
-sxhkd -c "$HOME/.config/sxhkd/sxhkdrc-common" "$HOME/.config/sxhkd/sxhkdrc-bspwm" &> /tmp/sxhkd.log &
-
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config border_width         0
@@ -28,14 +26,4 @@ bspc rule -a Gscreenshot state=floating
 bspc rule -a "Welcome to Android Studio" state=floating
 
 xsetroot -cursor_name left_ptr & # Changing the cursor to a pointer at startup
-lxpolkit &> /tmp/lxpolkit.log &
-nitrogen --restore
-compton &> /tmp/compton.log &
-polybar custom &> /tmp/polybar.log &
-numlockx on
-nm-applet &
-blueman-applet &
-libinput-gestures-setup start &
-dropbox start &
-synergy &
-redshift-gtk &
+$HOME/.scripts/startup

@@ -1,26 +1,29 @@
 #!/bin/bash
-# simple rofi menu for multiple screenshot options
-# uses flameshot and scrot
+# Simple rofi menu for multiple screenshot options
+# Uses flameshot and scrot
+# github.com/jomifepe
 
 IMGPATH="$HOME/Pictures/Screenshots"
 SCROTFN="$IMGPATH/%Y-%m-%d_%H-%M.png"
+DNFADEOUT=.5 # fadeout time of the delay notification
 
 OPTFS="Full-screen capture"
-OPTFF="Free-form capture"
 OPTCW="Current window capture"
+OPTFF="Free-form capture"
 OPTWS="Window selection capture"
 
-option=$(echo -e "$OPTFS\n$OPTFF\n$OPTCW\n$OPTWS" | rofi -width 20 -lines 6 -dmenu -i -p screenshot)
+option=$(echo -e "$OPTFS\n$OPTCW\n$OPTFF\n$OPTWS" | rofi -width 20 -lines 6 -dmenu -i -p screenshot)
 [ -z "$option" ] && exit 0
 delay=$(echo -e "0 seconds\n1 second\n2 seconds\n3 seconds\n4 seconds\n5 seconds" | rofi -width 10 -lines 6 -dmenu -i -p delay | awk '{print $1}')
-[ -z "$delay" ] && delay=0
+[ -z "$delay" ] && exit 0
 
-notify() { notify-send "Capture saved to $IMGPATH" && notify-send "Capture saved to clipboard"; }
-wait() { [ "$delay" -gt 0 ] && notify-send "Waiting for $delay seconds before screenshotting..."; sleep $delay; }
+notify_wait() { notify-send -t $(printf '%.0f' $(echo "($delay - $DNFADEOUT) * 1000" | bc)) "Waiting for $delay seconds before screenshotting..."; }
+notify_shot() { notify-send "Capture saved to $IMGPATH" && notify-send "Capture saved to clipboard"; }
+wait() { [ "$delay" -gt 0 ] && notify_wait && sleep $delay || sleep 1; }
 
 case $option in
   	$OPTFS) wait && flameshot full -p $IMGPATH -c ;;
+  	$OPTCW) wait && scrot -u -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify_shot ;;
   	$OPTFF) wait && flameshot gui ;;
-  	$OPTCW) wait && sleep .2 && scrot -u -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify ;;
-  	$OPTWS) wait && sleep .2 && scrot -a $(slop -f '%x,%y,%w,%h') -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify ;;
+  	$OPTWS) wait && scrot -a $(slop -f '%x,%y,%w,%h') -q 100 -e 'xclip -selection c -t image/png < $f' $SCROTFN && notify_shot ;;
 esac
