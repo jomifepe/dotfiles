@@ -2,9 +2,11 @@
 # Moves the current workspace to another monitor on i3wm. If it finds more than one, displays them using rofi
 # github.com/jomifepe
 
-MONITORS=$(xrandr --query | grep " connected" | cut -d" " -f1); COUNT=$(echo "$MONITORS" | wc -l)
-[ "$COUNT" -eq 1 ] && notify-send "Couldn't move workspace, only one monitor is connected" && exit 1
-CURRENT_WS=($(i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0] | .num, .output'))
-[ "$COUNT" -eq 2 ] && i3-msg move workspace to output $(echo "$MONITORS" | grep -v "${CURRENT_WS[1]}") && sleep .1 && i3-msg workspace ${CURRENT_WS[0]} && exit 0
-OPT=$(echo "$MONITORS" | rofi -dmenu -i -lines 5 -width 15 -p monitor | awk '{print $1}')
-[ ${#OPT} -gt 0 ] && i3-msg move workspace to output $OPT || exit 1
+{
+	MONITORS=$(xrandr --query | grep " connected" | cut -d" " -f1); COUNT=$(echo "$MONITORS" | wc -l)
+	[ "$COUNT" -eq 1 ] && notify-send "Couldn't move workspace, only one monitor is connected" && exit 1
+	CURRENT_WS=($(i3-msg -t get_workspaces | jq -r 'map(select(.focused))[0] | .num, .output'))
+	[ "$COUNT" -eq 2 ] && i3-msg move workspace to output $(echo "$MONITORS" | grep -v "${CURRENT_WS[1]}") && sleep .1 && i3-msg workspace ${CURRENT_WS[0]} && exit 0
+	OPT=$(echo "$MONITORS" | rofi -dmenu -i -lines 5 -width 15 -p monitor | awk '{print $1}')
+	[ ${#OPT} -gt 0 ] && i3-msg move workspace to output $OPT || exit 1
+} &> /dev/null # 🤫
